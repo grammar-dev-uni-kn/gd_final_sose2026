@@ -1,0 +1,264 @@
+DEMO   ENGLISH   CONFIG (1.0)
+  ROOTCAT   S.
+  FILES  .
+  LEXENTRIES   (DEMO ENGLISH).
+  TEMPLATES (DEMO ENGLISH). 
+  RULES   (DEMO ENGLISH).
+  GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
+  NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
+  EPSILON   e.
+  OPTIMALITYORDER NOGOOD.
+  GENOPTIMALITYORDER NOGOOD .
+
+----
+
+DEMO   ENGLISH   RULES (1.0)
+
+ 
+   S --> NP: (^ SUBJ)=!
+	      (! CASE)= nom;
+ 	 VP
+         (PERIOD).
+
+   
+   VP --> V.
+
+   PP --> { P: ^ = !            "head of PP"
+	   (! PTYPE) =c sem;    "semantic type, Adjunct"
+           NP: (^ OBJ) = !
+	   (! CASE) = acc;
+	   |
+	   P: ^ = !             "head of PP"
+	   (! PTYPE) =c nosem;   "non-semantic type, OBL"
+	   NP
+	   }.  
+
+   NP --> {
+          ({D                            "can leave out ^=!"
+            |
+             PRON: ^=!
+                   (!PRON-TYPE)=c poss})                       
+	  AP*: ! $ (^ ADJUNCT);     "introducing adjectives in sets"
+	  N                          "head of NP"
+	  PP*: ! $ (^ ADJUNCT)      "PPs modifying NPs"
+	       (! PTYPE) =c sem          "have to be semantic"
+               @(OT-MARK PPattach);
+          |
+          PRON : ^=!
+                (!PRON-TYPE)=c pers
+            }.
+ 
+  AP  --> AdvP*: ! $ (^ ADJUNCT);   "adverbs modifying adjectives"
+          (COMMA)
+          A.
+
+  AdvP --> Adv*: ! $ (^ ADJUNCT);   "adverbs modifying adverbs"
+          (COMMA)
+           Adv.
+
+  PRON --> Pron: ^ = !
+            {(!PRON-TYPE)=pers
+            |
+            (!PRON-TYPE)=poss}.
+
+
+----
+
+DEMO ENGLISH TEMPLATES (1.0)                                  
+
+
+"template for count nouns"
+CN(P) = (^PRED)='P'
+	(^ NUM)=sg
+	(^ DEF).
+
+
+INTRANS(P) = (^ PRED)='P<(^ SUBJ)>'.
+
+TRANS(P) = (^ PRED)='P<(^ SUBJ) (^ OBJ)>'.
+
+
+OPT-TRANS(P) = { @(INTRANS P) | @(TRANS P) }. 
+
+
+DITRANS(P) = (^ PRED)='P<(^ SUBJ) (^ OBJ)(^ OBL-TO)>'.
+
+
+"template for advectives"
+AP(P) = (^PRED) = 'P'.
+
+
+----
+
+DEMO ENGLISH LEXICON (1.0)
+
+
+einai         V *  (^MOOD) = indicative
+                @PRES3SG
+		@(TRANS be).
+
+
+xaidepse  V *  (^MOOD) = indicative
+               {(^TENSE)= past |
+                (^PARTICIPLE)= past }
+		@(TRANS pet).
+	      
+               
+agapaei     V *  (^MOOD) = indicative
+               @(TRANS loves)
+                @PRES3SG.
+
+
+koimatai    V *  (^ MOOD) = indicative
+               @PRES3SG
+               @(INTRANS sleep).
+
+yiothetise
+		
+
+"NOUNS"
+
+mhtera  N * (^ PRED) = 'mother'
+	      (^ NUM) = sg
+	      (^ PERS) = 3
+              "gender=fem". 
+
+
+skyli   N * (^ PRED) = 'dog'
+	    (^ NUM) = sg
+	    (^ PERS) = 3.
+
+
+Petros
+
+trixwma
+
+
+
+"PRONOUNS"
+
+"ARTICLES"
+
+
+
+"DETERMINERS"
+
+the  	  D *  (^ DEF) = +.
+
+a   	  D *  (^ DEF) = -.
+
+
+"ADJECTIVES"
+
+
+peinasmeno   A * @(AP hungry).
+
+filozwos    A * @(AP animal-lover).
+
+kafe       A * @(AP brown).
+
+
+
+
+
+
+"PRONOUNS"
+
+I       Pron * @(PRON I)
+                (^PERS)=1
+                (^NUM)=sg
+                (^CASE)=nom.
+
+you     Pron * @(PRON you)
+                (^PERS)=2
+                {(^NUM)=sg
+                 | (^NUM)=pl}.
+
+he      Pron * @(PRON he)
+                (^PERS)=3
+                (^NUM)=sg
+                (^CASE)=nom.
+
+she     Pron * @(PRON she)
+                (^PERS)=3
+                (^NUM)=sg
+                (^CASE)=nom.
+
+it      Pron * @(PRON it)
+                (^PERS)=3
+                (^NUM)=sg.
+
+we      Pron * @(PRON we)
+                (^PERS)=1
+                (^NUM)=pl
+                 (^CASE)=nom.
+
+they   Pron * @(PRON they)
+                (^PERS)=3
+                (^NUM)=pl
+                (^CASE)=nom.
+
+me     Pron * @(PRON I)
+                (^PERS)=1
+                (^NUM)=sg
+                (^CASE)=acc.
+
+him    Pron * @(PRON he)
+                (^PERS)=3
+                (^NUM)=sg
+                (^CASE)=acc.
+
+her      Pron * @(PRON she)
+                (^PERS)=3
+                (^NUM)=sg
+                (^CASE)=acc.
+
+us      Pron * @(PRON we)
+                (^PERS)=1
+                (^NUM)=pl
+                (^CASE)=acc.
+
+them     Pron * @(PRON they)
+                (^PERS)=3
+                (^NUM)=pl
+                (^CASE)=acc.
+
+my      Pron  * @(POSS I)
+                (^PERS)=1
+                (^NUM)=sg.
+
+your     Pron  * @(POSS you)
+                (^PERS)=2
+               {(^NUM)=sg
+                 | (^NUM)=pl}.
+
+his      Pron  * @(POSS he)
+                (^PERS)=3
+                (^NUM)=sg.
+
+her       Pron  * @(POSS she)
+                (^PERS)=3
+                (^NUM)=sg.
+
+its       Pron  * @(POSS it)
+                (^PERS)=3
+                (^NUM)=sg.
+
+our       Pron  * @(POSS we)
+                (^PERS)=1
+                (^NUM)=pl.
+
+their     Pron  * @(POSS they)
+                (^PERS)=3
+                (^NUM)=pl.
+
+
+"PUNCTUATION"
+
+
+.  PERIOD * .
+
+,  COMMA * .
+
+----
