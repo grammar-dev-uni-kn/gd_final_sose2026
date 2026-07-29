@@ -1,0 +1,71 @@
+DEMO   ENGLISH   CONFIG (1.0)
+  ROOTCAT   S.
+  FILES  .
+  LEXENTRIES   (DEMO ENGLISH).
+  TEMPLATES (DEMO ENGLISH). 
+  RULES   (DEMO ENGLISH).
+  GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
+  NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
+  EPSILON   e.
+  OPTIMALITYORDER NOGOOD.
+
+----
+
+DEMO   ENGLISH   RULES (1.0)
+
+   S --> NP: (^ SUBJ)=!
+	     (! CASE)=nom;
+ 	 VP: ^=!.
+
+   VP --> V: ^=!; 
+ 	  (NP: (^ OBJ)=!
+	       (! CASE)=acc).
+
+   NP --> (D)  "can leave out ^=!"
+ 	  N. 
+
+----
+
+DEMO ENGLISH TEMPLATES (1.0)
+
+"no templates yet"
+
+
+----
+
+DEMO ENGLISH LEXICON (1.0)
+
+bones 	  N * (^ PRED) = 'bone'
+	      (^ NUM) = pl
+	      (^ PERS) = 3. 
+
+bone 	  N * "forgotten to add a pred value" 
+	      (^ NUM) = sg
+	      (^ PERS) = 3. 
+
+dog 	  N * (^ PRED) = 'dog'
+	      (^ NUM) = sg
+	      (^ PERS) = 3. 
+
+dogs 	  N * (^ PRED) = 'dog'
+	      (^ NUM) = pl
+	      (^ PERS) = 3. 
+
+devours   V *  (^ PRED) = 'devour<(^SUBJ)(^OBJ)>' 
+       	    (^ TENSE) = pres
+	    (^ MOOD) = indicative
+            (^ SUBJ PERS) = 3
+            (^ SUBJ NUM) = sg.
+
+appears   V *  (^ PRED) = 'appear<(^SUBJ)>' 
+       	    (^ TENSE) = pres
+	    (^ MOOD) = indicative
+            (^ SUBJ PERS) = 3
+            (^ SUBJ NUM) = sg.
+
+the  D *  (^ DEF) = +.
+
+a   D *  (^ DEF) = -.
+
+----

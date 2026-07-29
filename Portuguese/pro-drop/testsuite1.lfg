@@ -1,0 +1,24 @@
+#show how it works
+the dog devours bones
+
+# unification failure, subject-verb agreement (consistency)
+the dogs devours bones
+
+# coherence violation
+the dog appears bones 
+
+# completeness violation
+the dog devours 
+
+# missing PRED value, completeness violation
+the dog devours a bone
+
+#missing rules, unknown words
+the dog devours bones in the park
+
+#new verbs --- intrans
+a dog sleeps
+
+#new verbs -- trans
+a dog chases a bone
+
