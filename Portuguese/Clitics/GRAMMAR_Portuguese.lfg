@@ -9,7 +9,7 @@ DEMO   PORTUGUESE   CONFIG (1.0)
   NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
   EPSILON   e.
   CHARACTERENCODING utf-8.
-  OPTIMALITYORDER NOGOOD BadProclisis BadEnclisis.
+  OPTIMALITYORDER NOGOOD.
 
 ----
 
@@ -17,7 +17,6 @@ DEMO   PORTUGUESE   RULES (1.0)
 
    "Root rule handling declarative clauses and topicalization"
    ROOT --> { S
-	(PERIOD: @(OT-MARK PUNCT))
 	|
 	Stop
 	}.
@@ -25,12 +24,15 @@ DEMO   PORTUGUESE   RULES (1.0)
    "Main clause structure"
    S --> { NP: (^ SUBJ)=!
           (! CASE)=nom;
-      VP: ^=! |  VP: ^=!;
-  NP: (^ SUBJ)=!
-  (! CASE)=nom |
-      VP: ^=!
-	(^ SUBJ PRED) = 'PRO' }
-	(PUNCT: (! PFORM) =c period).
+          VP: ^=! 
+	|  
+	  VP: ^=!;
+  	  NP: (^ SUBJ)=! "subject inversion in case of topicalization"
+  	  (! CASE)=nom 
+	|
+          VP: ^=!
+	  (^ SUBJ PRED) = 'PRO' } "enclisis case"
+	  (PUNCT: (! PFORM) =c period).
   
 "Subordinate clause structure (routes to VP_sub for mandatory proclisis)"
   Ssub --> { NP: (^ SUBJ) = !
@@ -42,26 +44,26 @@ DEMO   PORTUGUESE   RULES (1.0)
              | VP_sub: ^ = !
                (^ SUBJ PRED) = 'PRO' } .
 
-    "Topicalization rule (Topicalized NP bound to a down-path function)"
+    "Topicalization rule"
     Stop -->   NP: (^ TOPIC)=!
              (^ {XCOMP|COMP}* {OBJ|OBJ2}) = !;
 	(COMMA)
 	S. 
    
    "Positional alternation between proclisis (with ADV trigger) and default enclisis"
-   VP -->{ ADV: ! $ (^ ADJUNCT);
+   VP -->{ ADV: ! $ (^ ADJUNCT); "proclisis trigger"
            CL: (^ OBJ) = !; 
             V: ^ =!        
           | 
 	    V: ^ = ! ;
-            CL: { (^ OBJ) = ! | (^ OBJ2) = !};
+            CL: { (^ OBJ) = ! | (^ OBJ2) = !}; "enclisis, even in the presence of adv, but after the verb"
 	    (ADV: ! $ (^ ADJUNCT))
           | 
-		V: ^ = ! ;
+		V: ^ = ! ;      "lexical NP object without clitic"
             (NP: (^ OBJ) = !
                  (! CASE) = acc) 
 	} 
-	({ CP: (^ COMP) = !;
+	({ CP: (^ COMP) = !;       "Complement clause"
  	   | VPinf: (^XCOMP) = !
 		    (^ VFORM) = inf}).
 
@@ -70,11 +72,11 @@ DEMO   PORTUGUESE   RULES (1.0)
             N: ^=!
           }. 
 
-   CP -->
-    C
-    Ssub.
+   "Complement clause: introduces a subordinate clause headed by a complementizer."
+   CP -->  	C
+    		Ssub.
 
- "Subordinate VP: Mandatory proclisis triggered by complementizer"
+ "Subordinate VP: Mandatory proclisis triggered by complementizer. No enclitic alternative is allowed here."
  VP_sub --> { (ADV+: ! $ (^ ADJUNCT)) 
                 CL: (^ OBJ) = ! ;
                 V: ^ = !
@@ -199,7 +201,8 @@ sei V * { @(COMP know)
 Eu      PRON * (^ PRED) = 'I'
 		@1-pers-SG		
 		@PRON-NOM
-		(^ ANIMATE) = +.
+		(^ ANIMATE) = +
+		(^ CAPITAL) = +.
 
 eu  PRON * (^ PRED) = 'I'
 		@1-pers-SG		
