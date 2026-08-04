@@ -1,0 +1,280 @@
+DEMO   PORTUGUESE   CONFIG (1.0)
+  ROOTCAT   ROOT.
+  FILES  .
+  LEXENTRIES   (DEMO PORTUGUESE).
+  TEMPLATES (DEMO PORTUGUESE). 
+  RULES   (DEMO PORTUGUESE).
+  GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
+  NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
+  EPSILON   e.
+  CHARACTERENCODING utf-8.
+  OPTIMALITYORDER NOGOOD BadProclisis BadEnclisis.
+
+----
+
+DEMO   PORTUGUESE   RULES (1.0)
+
+   "Root rule handling declarative clauses and topicalization"
+   ROOT --> { S
+	(PERIOD: @(OT-MARK PUNCT))
+	|
+	Stop
+	}.
+
+   "Main clause structure"
+   S --> { NP: (^ SUBJ)=!
+          (! CASE)=nom;
+      VP: ^=! |  VP: ^=!;
+  NP: (^ SUBJ)=!
+  (! CASE)=nom |
+      VP: ^=!
+	(^ SUBJ PRED) = 'PRO' }
+	(PUNCT: (! PFORM) =c period).
+  
+"Subordinate clause structure (routes to VP_sub for mandatory proclisis)"
+  Ssub --> { NP: (^ SUBJ) = !
+                   (! CASE) = nom ;
+               VP_sub: ^ = !
+             | VP_sub: ^ = ! ;
+               NP: (^ SUBJ) = !
+                   (! CASE) = nom
+             | VP_sub: ^ = !
+               (^ SUBJ PRED) = 'PRO' } .
+
+    "Topicalization rule (Topicalized NP bound to a down-path function)"
+    Stop -->   NP: (^ TOPIC)=!
+             (^ {XCOMP|COMP}* {OBJ|OBJ2}) = !;
+	(COMMA)
+	S. 
+   
+   "Positional alternation between proclisis (with ADV trigger) and default enclisis"
+   VP -->{ ADV: ! $ (^ ADJUNCT);
+           CL: (^ OBJ) = !; 
+            V: ^ =!        
+          | 
+	    V: ^ = ! ;
+            CL: { (^ OBJ) = ! | (^ OBJ2) = !};
+	    (ADV: ! $ (^ ADJUNCT))
+          | 
+		V: ^ = ! ;
+            (NP: (^ OBJ) = !
+                 (! CASE) = acc) 
+	} 
+	({ CP: (^ COMP) = !;
+ 	   | VPinf: (^XCOMP) = !
+		    (^ VFORM) = inf}).
+
+   NP -->  { PRON: ^=! 
+          | (D: ^=!) 
+            N: ^=!
+          }. 
+
+   CP -->
+    C
+    Ssub.
+
+ "Subordinate VP: Mandatory proclisis triggered by complementizer"
+ VP_sub --> { (ADV+: ! $ (^ ADJUNCT)) 
+                CL: (^ OBJ) = ! ;
+                V: ^ = !
+              | (ADV+: ! $ (^ ADJUNCT)) 
+                V: ^ = ! ;
+                (NP: (^ OBJ) = !
+                     (! CASE) = acc)
+              }.
+
+----
+
+DEMO PORTUGUESE TEMPLATES (1.0)
+
+OT-MARK(_mark) = "assigns an OT mark"
+		_mark $ o::*.
+
+PN =    (^ PERS) = 3
+	(^ NUM) = sg
+	(^ NSYN) = proper
+	(^ CAPITAL) = +
+	(^ ANIMATE) = +
+	(^ DEF) = +. 
+
+PRES3SG = (^ TENSE) = pres
+	  (^ SUBJ PERS) = 3
+	(^ MOOD) = indicative
+	  (^ SUBJ NUM) = sg.
+
+PAST3SG = (^ TENSE) = past
+	  (^ SUBJ PERS) = 3
+	  (^ SUBJ NUM) = sg.
+
+1-pers-SG = (^ PERS) = 1
+        (^ NUM)= sg.
+
+PRES1SG = (^ TENSE) = pres
+          @1-pers-SG .
+
+3-SG = (^ NUM) = sg
+        (^ PERS) = 3.
+
+M-SG = (^ GEND)=masc
+	(^ NUM) = sg.
+
+F-SG = (^ GEND)=fem
+	(^ NUM) = sg.
+
+
+PRON-NOM = (^ CASE) = nom
+           (^ PRON-TYPE) = pers.
+
+PRON-PERS(P) = (^ PRED) = '_pred'
+		(^ PERS) = _pers
+		(^ NUM) = _num
+		(^ CASE) = _case
+		(^ PRON-TYPE) = pers.
+
+DITRANS(P) = (^ PRED)='P<(^ SUBJ) (^ OBJ) (^ OBJ2)>'.
+
+INTRANS(P) = (^ PRED)='P<(^ SUBJ)>' 
+		(^ PASSIVE) = -.
+
+TRANS(P) =  (^ PRED)='P<(^ SUBJ)(^ OBJ)>'.
+
+COMP(P) = (^ PRED)='P<(^ SUBJ)(^ COMP)>'.
+
+OPT-TRANS(P) = { @(INTRANS P) | @(TRANS P) }.
+
+----
+
+DEMO PORTUGUESE LEXICON (1.0) 
+
+"Nouns"
+
+João 	  N * (^ PRED) = 'João'
+	       @PN
+		(^ GEND) = masc. 
+
+
+Maria 	  N * (^ PRED) = 'Maria'
+	       @PN
+		(^ GEND) = fem. 
+
+livro 	  N * (^ PRED) = 'book'
+	      @3-SG
+	      (^ ANIMATE) = -
+              (^ GEND)=masc.
+
+"Verbs"
+
+vê    V * @(OPT-TRANS see) 
+            @PRES3SG.
+
+
+sabe V *
+    @(OPT-TRANS know)
+    @PRES3SG.
+
+disse V * { @(COMP say) | @(TRANS say)}
+            @PAST3SG.
+
+vejo V *
+   @(TRANS see)
+   @PRES1SG.
+
+dou V * @(DITRANS give)
+	@PRES1SG
+	(^ OBJ2 ANIMATE) = +.
+
+visitou V *
+    @(TRANS visit)
+    @PAST3SG.
+
+sei V * { @(COMP know)
+	       | @(TRANS know)}
+    @PRES1SG.
+
+
+
+"Pronouns"
+
+Eu      PRON * (^ PRED) = 'I'
+		@1-pers-SG		
+		@PRON-NOM
+		(^ ANIMATE) = +.
+
+eu  PRON * (^ PRED) = 'I'
+		@1-pers-SG		
+		@PRON-NOM
+		(^ ANIMATE) = +.
+
+ele PRON *
+    (^ PRED)='he'
+    @3-SG.
+
+
+
+"Determiners & Clitics"
+
+o  D *  (^ DEF) = +
+	@M-SG;
+   CL *
+        (^ PRED)='PRO'
+        @M-SG
+	(^ CASE) = acc.
+
+a  D *  (^ DEF) = +
+	@F-SG;
+   CL *
+       (^ PRED)='PRO'
+       @F-SG
+	(^ CASE) = acc.
+
+O  D *  (^ DEF) = +
+	@M-SG
+	(^ CAPITAL) = +.
+
+A  D *  (^ DEF) = +
+	@F-SG
+	(^ CAPITAL) = +.
+
+Este  D *  (^ DEF) = +
+     @M-SG
+      (^ CAPITAL) = +.
+
+"complementizers"
+
+que  C * (^COMP-FORM) = that.
+
+"Triggers"
+
+não ADV * (^ PRED) = 'not'
+   (^ ADV-TYPE) = neg
+   (^ CLAUSE-TYPE) = negative.
+
+raramente ADV * (^ PRED) = 'rarely'.
+
+pouco ADV * (^ PRED) = 'little'.
+
+ainda ADV *
+   (^ PRED) = 'still'.
+
+
+"Clitics"
+
+me CL *
+   (^ PRED)='me' 
+   @1-pers-SG.
+
+te CL * (^ PRED)='you'
+        (^ PERS) = 2
+        (^ NUM)= sg
+	(^ ANIMATE) = +.
+
+
+"punctuation"
+
+. PERIOD * . 
+
+, COMMA  * . 
+
+
+----

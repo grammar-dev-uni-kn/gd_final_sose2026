@@ -1,0 +1,35 @@
+A Maria vê o (1 0.006 16)
+
+A Maria vê o João (2 0.000 29)
+
+A Maria não o vê (1 0.004 18)
+
+Eu vejo o (1 0.000 14)
+
+O João não me vê (1 0.000 18)
+
+O João raramente me vê (1 0.000 18)
+
+O João vê me raramente (1 0.004 18)
+
+O João disse que me vê (1 0.000 23)
+
+Este livro, dou te eu (1 0.004 17)
+
+Eu sei que ele ainda não o visitou (1 0.000 28)
+
+
+
+#incorrect#
+
+A Maria o vê (0 0.000 0)
+
+A Maria não vê o (0 0.000 0)
+
+O João raramente vê me (0 0.000 0)
+
+O João disse que vê me (0 0.004 0)
+
+Este livro, eu te dou.  (0 0.000 0)
+
+# 15 sentences, 0.021 CPU secs total, 0.006 CPU secs max (08/04/26)

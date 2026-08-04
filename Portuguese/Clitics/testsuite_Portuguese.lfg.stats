@@ -1,0 +1,40 @@
+((1) (1 0.006 16) (4 words))
+((2) (2 0.000 29) (5 words))
+((3) (1 0.004 18) (5 words))
+((4) (1 0.000 14) (3 words))
+((5) (1 0.000 18) (5 words))
+((6) (1 0.000 18) (5 words))
+((7) (1 0.004 18) (5 words))
+((8) (1 0.000 23) (6 words))
+((9) (1 0.004 17) (5 words))
+((10) (1 0.000 28) (8 words))
+((11) (0 0.000 0) (4 words))
+((12) (0 0.000 0) (5 words))
+((13) (0 0.000 0) (5 words))
+((14) (0 0.004 0) (6 words))
+((15) (0 0.000 0) (5 words))
+
+XLE release of Mar 17, 2017 21:12.
+Grammar = /home/ilaria/grammars/gd_final_sose2026/Portuguese/Clitics/GRAMMAR_Portuguese.lfg.
+Grammar last modified on Aug 04, 2026 16:51.
+Host machine is DESKTOP-KAR20M4.
+15 sentences, 0 errors, 0 mismatches
+5 sentences had 0 parses
+10 good sentences
+9 sentences had exactly one grammatical parse
+timeout = 15
+max_xle_scratch_storage = 100 MB
+prune_subtree_location = 1
+max_new_events_per_graph_when_skimming = 500
+maximum raw subtrees per sentence = 51 (#2)
+maximum event count per sentence = 1753
+average event count per graph = 44.211
+tokens = 0.0%, morph = 0.0%, multiword = 0.0%, lex = 2.1%, chart = 26.6%,
+unifier = 71.3%, completer = 0.0%, solver = 0.0%, output = 0.0%
+max_alloc_mem = 164.26 MB
+0.021 CPU secs total, 0.006 CPU secs max
+elapsed time = 0 seconds
+  range parsed failed  words   seconds  subtrees     optimal
+   1-10     10      5   5.10     0.002     19.90        1.10
+    all     10      5   5.10     0.002     19.90        1.10
+0.21 of the variance in seconds is explained by the number of subtrees
