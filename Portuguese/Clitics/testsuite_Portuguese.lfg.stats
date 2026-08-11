@@ -1,13 +1,13 @@
-((1) (1 0.006 16) (4 words))
-((2) (2 0.000 29) (5 words))
+((1) (1 0.010 16) (4 words))
+((2) (2 0.004 29) (5 words))
 ((3) (1 0.000 18) (5 words))
 ((4) (1 0.004 14) (3 words))
 ((5) (1 0.000 18) (5 words))
 ((6) (1 0.000 18) (5 words))
 ((7) (1 0.004 18) (5 words))
 ((8) (1 0.000 23) (6 words))
-((9) (1 0.000 17) (5 words))
-((10) (1 0.000 28) (8 words))
+((9) (1 0.004 17) (5 words))
+((10) (1 0.004 28) (8 words))
 ((11) (0 0.000 0) (4 words))
 ((12) (0 0.000 0) (5 words))
 ((13) (0 0.000 0) (5 words))
@@ -29,12 +29,12 @@ max_new_events_per_graph_when_skimming = 500
 maximum raw subtrees per sentence = 48 (#2)
 maximum event count per sentence = 1753
 average event count per graph = 44.352
-tokens = 34.2%, morph = 0.0%, multiword = 0.0%, lex = 0.0%, chart = 34.2%,
-unifier = 31.6%, completer = 0.0%, solver = 0.0%, output = 0.0%
+tokens = 0.0%, morph = 0.0%, multiword = 0.0%, lex = 0.0%, chart = 22.5%,
+unifier = 77.5%, completer = 0.0%, solver = 0.0%, output = 0.0%
 max_alloc_mem = 163.06 MB
-0.017 CPU secs total, 0.006 CPU secs max
+0.034 CPU secs total, 0.010 CPU secs max
 elapsed time = 0 seconds
   range parsed failed  words   seconds  subtrees     optimal
-   1-10     10      5   5.10     0.001     19.90        1.10
-    all     10      5   5.10     0.001     19.90        1.10
-0.26 of the variance in seconds is explained by the number of subtrees
+   1-10     10      5   5.10     0.003     19.90        1.10
+    all     10      5   5.10     0.003     19.90        1.10
+0.01 of the variance in seconds is explained by the number of subtrees
