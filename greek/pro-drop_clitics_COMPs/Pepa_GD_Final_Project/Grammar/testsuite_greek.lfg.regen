@@ -1,0 +1,66 @@
+I Ellada ehi pollus ksenus turistes
+
+1:REGENERATION DID NOT MATCH 'i Ellada ehi pollus ksenus turistes'.
+
+{Poli se agapao|Se agapao poli}
+
+4:REGENERATION DID NOT MATCH 'se agapao poli'.
+
+{ Simera edosa {ena vivlio stin Maria|stin Maria ena vivlio}
+ |Edosa {ena vivlio stin Maria|stin Maria ena vivlio} simera}
+
+6:REGENERATION DID NOT MATCH 'edosa stin Maria ena vivlio simera'.
+
+{Simera ths edosa ena vivlio|Ths edosa ena vivlio simera}
+
+7:REGENERATION DID NOT MATCH 'simera ths edosa ena vivlio'.
+
+Su ipe oti agapai mja omorfi kopela
+
+9:REGENERATION DID NOT MATCH 'su ipe oti agapai mja omorfi kopela'.
+
+Mu ipan oti pigan ston jatro
+
+10:REGENERATION DID NOT MATCH 'mu ipan oti pigan ston jatro'.
+
+Sas ipa oti 
+  { sto kedro 
+      { prin mja evdomada pigame ston kinimatografo
+       |pigame ston kinimatografo prin mja evdomada}
+   |  { prin mja evdomada pigame ston kinimatografo
+       |pigame ston kinimatografo prin mja evdomada} 
+    sto kedro
+   |prin mja evdomada sto kedro pigame ston kinimatografo
+   |pigame ston kinimatografo sto kedro prin mja evdomada}
+
+11:REGENERATION DID NOT MATCH 'sas ipa oti prin mja evdomada pigame ston kinimatografo sto kedro'.
+
+Ths ipa oti {sto tilefono tin zitane|tin zitane sto tilefono}
+
+12:REGENERATION DID NOT MATCH 'ths ipa oti tin zitane sto tilefono'.
+
+Tus enimerosan oti 
+  { {arga ftanun|ftanun arga} sto limani
+   |{sto limani ftanun|ftanun sto limani} arga}
+
+14:REGENERATION DID NOT MATCH 'tus enimerosan oti ftanun arga sto limani'.
+
+Mas anakinosate oti 
+{metakomizun sto eksoteriko sidoma|sidoma metakomizun sto eksoteriko}
+
+15:REGENERATION DID NOT MATCH 'mas anakinosate oti metakomizun sto eksoteriko sidoma'.
+
+Su ipenthimizo oti 
+  { avrio grafis ena poli diskolo diagonizma
+   |grafis ena poli diskolo diagonizma avrio}
+
+16:REGENERATION DID NOT MATCH 'su ipenthimizo oti avrio grafis ena poli diskolo diagonizma'.
+
+Ths to ipa
+
+17:REGENERATION DID NOT MATCH 'ths to ipa'.
+
+Ths ipa oti o Nikos tin agapai
+
+19:REGENERATION DID NOT MATCH 'ths ipa oti o Nikos tin agapai'.
+
