@@ -1,31 +1,76 @@
+#grammatical sentences
+
 # 1. the mother sleeps
 
-h mhtera koimatai.
+h mhtera koimatai.      
 
 # 2. the mother, that is tired, sleeps
 
-h mhtera, poy einai koyrasmenh, koimatai.
+h mhtera, poy einai koyrasmenh, koimatai.   
 
-# 3. the mother, who is tired, sleeps
+# 3. she, who is tired, sleeps
 
-h mhtera, h opoia einai koyrasmenh, koimatai.
+ayth, h opoia einai koyrasmenh, koimatai.  
 
-# 4. Peter petted the dog
+# 4. the mother, who sleeps, is tired
 
-o Petros xaidepse to skyli.
+h mhtera, h opoia koimatai, einai koyrasmenh.  
 
-# 5. Peter petted the dog, who is hungry
+# 5. Peter petted the brown dog
 
-o Petros xaidepse to skyli, to opoio peinaei. OR to opoio einai peinasmeno.
+o Petros xaidepse to kafe skyli.    
 
-# 6. Peter, that loves animals, petted the dog, who he adopted.
+# 6. Peter petted the dog, who is hungry 
 
-o Petros, poy einai filozwos, xaidepse to skyli, to opoio yiothetise.
+o Petros xaidepse to skyli, to opoio einai peinasmeno. 
 
-# 7. Peter, who loves animals, petted the dog, whose fur is brown
+# 7. the mother hugged Peter, whom she loves
 
-o Petros, o opoios einai filozwos, xaidepse to skyli, toy opoioy to trixwma einai kafe.
+h mhtera agkaliase ton Petro, ton opoio ayth agapaei.   
 
-# sentences that do not work
+# 8. Peter hugged her, whom he loves
 
+o Petros agkaliase aythn, thn opoia aytos agapaei. 
+
+# 9. Peter, that loves animals, petted the dog.   
+
+o Petros, poy einai filozwos, xaidepse to skyli.   
+
+# 10. Peter, that loves animals, petted the dog, which he adopted
+
+o Petros, poy einai filozwos, xaidepse to skyli, to opoio aytos yiothetise. 
+
+# 11. Peter, who loves animals, petted it, that has brown fur
+
+o Petros, o opoios einai filozwos, xaidepse ayto, poy exei kafe trixwma.  
+
+# ungrammatical sentences
+
+# 12. gender agreement violation between determiner and relative pronoun
+
+h mhtera, to opoia einai koyrasmenh, koimatai.
+
+# 13. gender agreement violation between determiner, proper noun and adjective
+
+to Petros, o opoio einai filozwo, koimatai
+
+# 14. case violation: object in nominative (its relative pronoun in accusative)
+
+h mhtera agkaliase o Petros, ton opoio ayth agapaei.   
+
+# 15. case violation: relative pronoun in nominative
+
+o Petros agkaliase aythn, h opoia aytos agapaei. 
+
+# 16. transitive verb without object
+
+o Petros agkaliase.
+
+#17. intransitive with object
+
+h mhtera koimatai to skyli.
+
+#18. noun and pronoun without determiner
+
+skyli, opoio einai peinasmeno, agapaei Petro.
 
