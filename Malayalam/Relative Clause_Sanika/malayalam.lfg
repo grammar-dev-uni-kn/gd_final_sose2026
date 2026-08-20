@@ -1,0 +1,326 @@
+DEMO   MALAYALAM  CONFIG (1.0)
+ROOTCAT  ROOT.
+FILES  common.templates.lfg .
+LEXENTRIES   (DEMO MALAYALAM).
+TEMPLATES (DEMO MALAYALAM).
+RULES   (DEMO MALAYALAM).
+MORPHOLOGY (DEMO MALAYALAM).
+GOVERNABLERELATIONS    SUBJ OBJ OBJ2 OBL.
+SEMANTICFUNCTIONS    ADJUNCT NCOMP.
+EPSILON   e.
+CHARACTERENCODING utf-8.
+----
+
+DEMO MALAYALAM MORPHOLOGY (1.0)
+
+TOKENIZE:
+P!basic-parse-tok.fst G!
+
+----
+
+DEMO   MALAYALAM   RULES (1.0)
+ROOT --> {S | NP }. 			 "Root can be either a sentence or a noun phrase in case of 					 relative clauses"
+
+
+
+S   --> NP: (^ SUBJ) =!
+	    (! CASE) = nom;
+        VP:  ^=!.
+
+VP -->  {(NP: (^ OBJ)=! 				"direct object"
+	      (! CASE)= acc)
+ 	      (NP: (^ OBJ2) = !
+		(! CASE)=  dat)  			"secondary object"	  		
+	  V: ^=!
+	 |
+	  V: ^=!
+	 |
+	  ADJ: ^=!}.
+
+
+NP --> {
+          AP*: ! $ (^ ADJUNCT);	
+          NMOD*: ! $ (^ ADJUNCT);		   	"attributive nominal modifiers"
+          N : ^=!
+
+      	|
+
+         DEM*						"optional demonstrative"
+         NUMP*						"optional numeral"
+         AP*: ! $ (^ ADJUNCT);
+         NMOD* : ! $ (^ ADJUNCT);
+         N: ^=!
+
+	|
+    	 RELCL: (! SUBJ)=^
+		 ! $ (^ ADJUNCT);			"subject-gap relative clause"
+         DEM*
+         NUMP*
+         AP*: ! $ (^ ADJUNCT);
+         NMOD* : ! $ (^ ADJUNCT);
+         N: ^=!
+
+	|
+         RELCL: (! OBJ)=^
+		! $ (^ ADJUNCT);		   	"object-gap relative clause"
+         DEM*
+         NUMP*
+         AP*: ! $ (^ ADJUNCT);
+         NMOD* : ! $ (^ ADJUNCT);
+         N: ^=!
+	|
+         PRON: ^=!
+			}.
+
+
+
+     
+AP --> ADJ: ^=!. 
+
+DEM  --> D: (^ SPEC)=!.				"demonstrative as specifier"
+
+NUMP --> NUM: (^ SPEC NUM)=!.			"numeral as number specification"
+
+NMOD --> N: (^ NMOD)=!.
+
+
+RELCL --> (PP: ! $ (^ ADJUNCT))			"optional prepositional phrase"
+	  (ADV: ! $ (^ ADJUNCT))		"optional adverb, may precede the subject"
+	   (NP: (^ SUBJ)=!			"optional overt subject (absent subject-gap)"
+	         (! CASE)=nom)			 "subject must be nominative"
+        
+
+	  ( {(NP:(^ OBL) =!			"optional dative oblique argument"
+	        (!CASE) = dat)
+	   |
+	    (NP:(^ OBJ2) =!			"optional dative secondary object"
+	        (!CASE) = dat)} )
+	  (ADV: ! $ (^ ADJUNCT))		"optional adverb, may follow the subject"
+	  VREL:^=!.				"relative participial verb; heads RELCL"
+
+PP --> NP:(^OBJ)=!;
+	P:^=!.
+----
+
+DEMO MALAYALAM TEMPLATES (1.0)
+
+
+PRED(P) = (^ PRED) = 'P'. 
+
+PRES = (^ TENSE) = pres.
+
+PAST = (^ TENSE) = past.
+
+PART= (^VFORM)=part. 
+
+CASE(C) = (^ CASE) = C. 
+
+NOM = ( ^CASE) = nom.
+
+ACC = ( ^CASE) = acc. 
+
+DAT = (^CASE) = dat.
+
+MASC = (^GEND) = masc.
+
+FEM  = (^GEND) = fem.
+
+TRANS(P) 	=  (^ PRED)='P<(^ SUBJ) (^ OBJ)>'.
+
+INTRANS(P)	= (^ PRED) = 'P<(^SUBJ)>'.
+
+INTRANS-OBL(P) 	= (^ PRED) = 'P<(^SUBJ)(^OBL)>'.
+
+DITRANS(P)	= (^ PRED)='P<(^ SUBJ) (^ OBJ) (^OBJ2)>'.
+
+GET(P) = (^ PRED) = 'P<(^ OBL) (^ OBJ)>'.
+
+NOM-CN(P N) = @(PRED P)
+	      (^ NUM) = N
+	      (^ PERS) = 3
+	      (^ NTYPE) = count
+	      @NOM.
+
+ACC-CN(P N) = @(PRED P)
+	      (^ NUM) = N
+	      (^ PERS) = 3
+	      (^ NTYPE) = count
+	      @ACC.
+	     
+
+DAT-CN(P N) = @(PRED P)
+	      (^ NUM) = N
+	      (^ PERS) = 3
+	      (^ NTYPE) = count
+	      @ DAT.
+
+
+ NAME(P G) = (^ PRED) = 'P'
+	  (^ GEND) = G
+	  (^ NTYPE) = name.
+
+PREP (P) = (^PRED) = 'P<(^OBJ)>'.
+		     
+
+----
+
+DEMO MALAYALAM LEXICON (1.0)
+
+"Noun-NOM"
+
+patti	     	N * @(NOM-CN dog sg).
+
+pattikal     	N * @(NOM-CN dog pl).
+
+poocha 	    	N * @(NOM-CN cat sg). 
+
+pusthakam 	N * @(NOM-CN book sg).
+
+kathu 		N * @(NOM-CN letter sg).
+
+aal 		N * @(NOM-CN person sg).
+
+kutti 		N * @(NOM-CN child sg).
+
+kuttikal 	N * @(NOM-CN child pl).
+
+naaya 		N * @(NOM-CN dog sg).
+
+vivaram		N * @(NOM-CN information sg).
+
+chodhyangal 	N * @(NOM-CN question pl).
+
+paathrangal	N * @(NOM-CN vessel pl).
+
+policekaaran	N * @(NOM-CN policeman sg)
+		    @MASC.
+
+
+
+"Noun-ACC"
+	
+poochaye      	N * @(ACC-CN cat sg).
+
+kuttiye		N * @(ACC-CN child sg).
+
+chaakine	N * @(ACC-CN sack sg).
+
+"Noun-DAT"
+pareekshakku  	N * @(DAT-CN exam sg).
+
+
+"Attributive nouns"
+
+velli NMOD * (^ PRED)='SILVER'.
+
+
+"Pronouns"
+
+njan PRON * (^ PRED)='PRO'
+            (^ PERS)=1
+             (^ NUM)=sg.
+
+
+aval PRON * (^ PRED)='PRO'
+            (^ PERS)=3
+            (^ NUM)=sg.
+
+enikk PRON * (^ PRED)='PRO'
+            (^ PERS)=1
+            (^ NUM)=sg
+	    @DAT.
+
+
+
+"Proper nouns"
+
+Ammu N * @(NAME ammu fem).
+
+Swathi N * @(NAME swathi fem).
+
+Punnya N * @(NAME punnya fem).
+
+Punnyakk N * @(NAME punnya fem)
+	     @DAT.
+	     
+
+
+"Adverbs"
+
+innale ADV * (^ PRED)='YESTERDAY'.
+
+
+"Participial verbs"
+
+vangiya VREL * @(TRANS buy)
+	       @PART.
+
+ezhuthiya VREL * @(TRANS write)
+	         @PART.
+
+vayicha VREL * @(TRANS read)
+	         @PART.
+
+vanna VREL *  @(INTRANS come)
+              @PART.
+
+paadiya VREL * @(INTRANS sing)
+               @PART.
+
+kuracha VREL * @(INTRANS bark)
+	         @PART.
+
+oodunna VREL * @(INTRANS run)
+                @PART.
+
+kodutha VREL * @(DITRANS give)
+                @PART.
+
+varunna VREL * @(INTRANS-OBL come)
+                @PART.
+
+adicha VREL * @(TRANS beat)
+	         @PART.
+
+kittiya VREL * @(GET get)
+                @PART.
+
+kedakkunna VREL * @(INTRANS lie)
+                   @PART.
+
+
+"Main verbs"
+
+vannu V * @(INTRANS come)
+	  @PAST.
+
+chirichu V * @(INTRANS laugh)
+	      @PAST.
+
+kadichu V * @(TRANS bite)
+	      @PAST.
+
+kurachu	    V * @(INTRANS bark)
+	    	@PAST.
+
+kuraykunnu  V *  @(INTRANS bark)
+	         @PRES.
+
+kodukkaan VINF * @(TRANS give).
+
+
+nallathaan ADJ * (^ PRED)='GOOD<(^ SUBJ)>'.
+
+adutha ADJ * (^ PRED)='NEXT'.
+
+rand NUM * (^ NUMVAL)='TWO'.
+
+
+"Preposition"
+mel P * @(PREP ON).
+
+"Demonstratives"
+aa D * (^ DEF) = +.
+
+	  
+----

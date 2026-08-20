@@ -1,0 +1,11 @@
+# set encoding to utf-8
+set-character-encoding stdio utf-8
+
+# set timeout lower; amounts are in seconds
+set timeout 15
+
+# specify grammar
+set defaultParser "malayalam.lfg"
+
+# load parser
+create-parser $defaultParser
