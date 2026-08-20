@@ -1,0 +1,418 @@
+UKRAINIAN   IMPERSONAL   CONFIG (1.0)
+  ROOTCAT   ROOT.
+  FILES  .
+  LEXENTRIES   (UKRAINIAN IMPERSONAL).
+  RULES   (UKRAINIAN IMPERSONAL).
+  TEMPLATES (UKRAINIAN IMPERSONAL) .
+  GOVERNABLERELATIONS    SUBJ OBJ OBJ-TH OBJ?+ OBL?+ COMP XCOMP.
+  SEMANTICFUNCTIONS    ADJUNCT TOPIC FOCUS.
+  NONDISTRIBUTIVES    NUM PERS.
+  EPSILON   e.
+  OPTIMALITYORDER NOGOOD.
+
+----
+
+UKRAINIAN   IMPERSONAL   RULES (1.0)
+
+	ROOT	-->	IP
+			PERIOD.
+
+	IP	-->	{Adv: ! $ (^ ADJ)
+				  (! ADV-TYPE) =c sadv,
+			IP
+			|
+			({NP: (^ SUBJ) = !
+			      (! CASE) = nom
+			|
+			  NP: (^ OBJ) = !
+			      (! CASE) = acc
+			|
+			  NP: (^ OBJ) = !
+			      (! CASE) = dat})
+ 	  		I'}.
+
+   	I' 	--> 	{Adv: ! $ (^ ADJ)
+				(! ADV-TYPE) =c vadv,
+			I'
+			|
+			I
+			(VP)
+			|
+			Inull}.
+
+	I	-->	{V: ^=!
+			     (^ VFORM) =c fin
+			|
+			 AUX}.
+
+   	Inull 	--> 	e: (^ TNS-ASP TENSE) = pres
+		  	   (^ TNS-ASP MOOD) = indicative;
+			    VP.
+
+	VP 	-->	(V: ^=! 
+			     (^ VFORM) ~= fin)
+			(NP: (^ OBJ) = !
+			     (! CASE) = acc)
+			(NP: (^ OBJ-TH) = !
+			     (! CASE) = dat)
+			(NP: (^ OBL-AG) = !
+			     (! CASE) = inst).
+
+	NP	-->	N'.
+
+	N' 	-->     {(Adj: ! $ (^ ADJ)
+			     @ADJ-N-AGR)
+ 	  		 N
+			|
+			 PRON}.
+----
+
+UKRAINIAN   IMPERSONAL   TEMPLATES (1.0)
+
+"Nouns"
+
+COUNT-NOUN-SG(P G) = (^ PRED) = 'P'
+		     (^ NUM) = sg
+		     (^ GEND) = G
+		     (^ PERS) = 3.
+
+COUNT-NOUN-PL(P) = (^ PRED) = 'P'
+		   (^ NUM) = pl.
+
+MASS-NOUN(P G) = (^ PRED) = 'P'
+		  (^ NUM) = sg
+		  (^ GEND) = G
+		  (^ PERS) = 3.
+
+ANIM = (^ ANIMATE) = +.
+
+CASE(C) = (^ CASE) = C.
+
+CASE-SYN(C S) = {(^ CASE) = C 
+	   	|
+	   	(^ CASE) = S}.
+
+PERS-PRON(P N S) = (^ PRED) = 'P'
+	           (^ PRON-TYPE) = pers
+	           (^ NUM) = N
+	           (^ PERS) = S.
+"Verbs"
+
+V-PAST = (^ TNS-ASP TENSE) = past
+	 (^ VFORM) = fin
+	 (^ TNS-ASP MOOD) = indicative.
+
+V-PRES = (^ TNS-ASP TENSE) = pres
+	 (^ VFORM) = fin
+	 (^ TNS-ASP MOOD) = indicative.
+
+V-FUT = (^ TNS-ASP TENSE) = fut
+        (^ VFORM) = fin
+        (^ TNS-ASP MOOD) = indicative.
+
+AUX-PAST = (^ TNS-ASP TENSE) = past
+	   (^ TNS-ASP MOOD) = indicative
+	   (^ PASSIVE) =c +.
+
+PARTICIPLE(P) = (^ PARTICIPLE) = P.
+
+NO-TO = (^ VFORM) = no_to.
+
+VERB-0ARG(P) = (^ PRED) = 'P<>'.
+
+VERB-OBJ(P) = (^ PRED) = 'P<(^ OBJ)>'.
+
+VERB-SUBJ(P) = (^ PRED) = 'P<(^ SUBJ)>'.
+
+VERB-SUBJ-OBJ(P) = @(PASS (^ PRED) = 'P<(^ SUBJ)(^ OBJ)>').
+
+PASS(FRAME) = { FRAME "active"
+		   (^ PASSIVE) = -
+		   | FRAME "promotional passive"
+		   (^ PASSIVE) = +
+		   (^ PARTICIPLE) =c past
+		   (^ OBJ) --> (^ SUBJ)
+		   { (^ SUBJ) --> (^ OBL-AG)
+		   | (^ SUBJ) --> NULL
+		   }
+		   | FRAME "non-promotional passive"
+		   (^ PASSIVE) = +
+		   (^ VFORM) =c no_to
+		   (^ OBJ) --> (^ OBJ)
+		   { (^ SUBJ) --> (^ OBL-AG)
+		   | (^ SUBJ) --> NULL
+		   }
+		}.
+
+3PL-IMPERS = (^ SUBJ PRED) = 'pro'
+	     (^ SUBJ PRON-TYPE) = arb
+	     (^ SUBJ NUM) = pl
+	     (^ SUBJ PERS) = 3
+	     (^ SUBJ HUMAN) = +.
+
+SUBJ-NUM(N) = (^ SUBJ NUM) = N.
+
+SUBJ-GEND(G) = (^ SUBJ GEND) = G.
+
+SUBJ-PERS(P) = (^ SUBJ PERS) = P.
+
+OBJ-ACC = (^ OBJ CASE) = acc.
+
+SUBJ-0ARG-AGR = (^ AGR NUM) = sg
+	   	(^ AGR PERS) = 3
+	   	(^ AGR GEND) = neut.
+
+"Adverbs/adjectives"
+
+S-ADV(P) = (^ PRED) = 'P'
+	   (^ ADV-TYPE) = sadv.
+
+V-ADV(P) = (^ PRED) = 'P'
+	   (^ ADV-TYPE) = vadv.
+
+ADJ-SG(P G) = (^ PRED) = 'P'
+	      (^ GEND) = G
+	      (^ PERS) = 3
+	      (^ NUM) = sg.
+
+ADJ-N-AGR = (^ NUM) = (! NUM)
+	    (^ GEND) = (! GEND)
+	    (^ CASE) = (! CASE)
+	    (^ PERS) = (! PERS).
+----
+
+UKRAINIAN   IMPERSONAL   LEXICON (1.0)
+
+"Nouns"
+
+	divchyna	N * @(COUNT-NOUN-SG divchyna fem)		"girl"
+			    @(CASE nom)
+			    @ANIM.
+
+	dytynu		N * @(COUNT-NOUN-SG dytyna fem)			"child"
+			    @(CASE acc)
+			    @ANIM.
+
+	protestuvalnyky	N * @(COUNT-NOUN-PL protestuvalnyk)		"protester"
+			    @(CASE nom)
+			    @ANIM.
+
+	kartyny		N * @(COUNT-NOUN-PL kartyna)			"painting"
+			    @(CASE-SYN nom acc).
+
+	khlopets	N * @(COUNT-NOUN-SG khlopets masc)		"guy"
+			    @(CASE nom)
+			    @ANIM.
+
+	knyzhku		N * @(COUNT-NOUN-SG knyzhka fem)	 	"book"			
+			    @(CASE acc).
+
+	kravchyneiu	N * @(COUNT-NOUN-SG kravchynia fem)	 	"tailor"
+			    @(CASE inst)
+			    @ANIM.
+
+	nebo		N * @(COUNT-NOUN-SG nebo neut)			"sky"
+			    @(CASE-SYN nom acc).
+
+	prezydentom	N * @(COUNT-NOUN-SG prezydent masc)		"president"
+			    @(CASE inst)
+			    @ANIM.
+
+	suknia		N * @(COUNT-NOUN-SG suknia fem) 		"dress"
+			    @(CASE nom).
+
+	sukniu		N * @(COUNT-NOUN-SG suknia fem) 		"dress"
+			    @(CASE acc).
+	
+	svitlo		N * @(MASS-NOUN svitlo neut)			"light"
+			    @(CASE-SYN nom acc).
+
+	ukaz		N * @(COUNT-NOUN-SG ukaz masc)			"decree"
+			    @(CASE-SYN nom acc).
+
+	valiza		N * @(COUNT-NOUN-SG valiza fem) 		"suitcase"
+			    @(CASE nom).	
+
+	valizu		N * @(COUNT-NOUN-SG valiza fem) 		"suitcase"
+			    @(CASE acc).
+
+	vulytsiu	N * @(COUNT-NOUN-SG vulytsia fem)		"street"
+			    @(CASE acc).
+
+	zastuda		N * @(COUNT-NOUN-SG zastuda fem)		"cold"
+			    @(CASE nom).
+
+"Pronouns"
+	
+	mene		PRON * @(PERS-PRON ya sg 1)			"me"
+			       @(CASE acc).
+
+	vas		PRON * @(PERS-PRON vy pl 2)			"you"
+			       @(CASE acc).
+
+"Verbs"
+
+	chytaie		V * @(VERB-SUBJ-OBJ chytaty)			"read"
+		      	    @V-PRES
+			    @(SUBJ-NUM sg)
+			    @(SUBJ-PERS 3).
+
+	doshchylo 	V * @(VERB-0ARG doshchyty)			"rain"
+		      	    @V-PAST
+		      	    @SUBJ-0ARG-AGR.
+
+	lykhomanylo	V * @(VERB-OBJ lykhomanyty)			"shake with fever"
+		      	    @V-PAST
+		      	    @SUBJ-0ARG-AGR	
+			    @OBJ-ACC.
+
+	morozyt		V * @(VERB-OBJ morozyty)			"have chills"
+		      	    @V-PRES
+		      	    @SUBJ-0ARG-AGR
+			    @OBJ-ACC.
+
+	nudyt		V * @(VERB-OBJ nudyty)				"be nauseous"
+		      	    @V-PRES
+		      	    @SUBJ-0ARG-AGR
+			    @OBJ-ACC.
+
+	perekryiut	V * @(VERB-SUBJ-OBJ perekryty)			"block"
+		      	    @V-FUT
+		      	    {@3PL-IMPERS
+			    |
+			     @(SUBJ-NUM pl)
+                             @(SUBJ-PERS 3)}.
+
+	pidpysano	V * @(VERB-SUBJ-OBJ pidpysaty)			"sign"
+			    @NO-TO.	
+
+	poshyto		V * @(VERB-SUBJ-OBJ poshyty)			"sew"
+			    @NO-TO.
+
+	pryvezut	V * @(VERB-SUBJ-OBJ pryvezty)			"deliver"
+		      	    @V-FUT
+		      	    @3PL-IMPERS.
+
+	spyt		V * @(VERB-SUBJ spaty)				"sleep"
+		      	    @V-PRES
+			    @(SUBJ-NUM sg)
+			    @(SUBJ-PERS 3).
+
+	svitaie		V * @(VERB-0ARG svitaty)			"dawn"
+		      	    @V-PRES
+		      	    @SUBJ-0ARG-AGR.
+
+	vykradeno	V * @(VERB-SUBJ-OBJ vykrasty)			"steal"			    
+			    @NO-TO.
+
+	vykradeni	V * @(VERB-SUBJ-OBJ vykrasty)			"steal"
+			    @(PARTICIPLE past)
+			    @(SUBJ-NUM pl).
+
+	vymknuly	V * @(VERB-SUBJ-OBJ vymknuty)			"switch off"
+		      	    @V-PAST
+			    {@3PL-IMPERS
+			    |
+			    @(SUBJ-NUM pl)
+                            }.
+
+	vymknula	V * @(VERB-SUBJ-OBJ vymknuty)			"switch off"
+		      	    @V-PAST
+			    @(SUBJ-NUM sg)
+			    @(SUBJ-GEND fem)
+			    @(SUBJ-PERS 3).
+
+	zasmahaiut	V * @(VERB-SUBJ zasmahaty)			"tan"
+		      	    @V-PRES
+			    {@3PL-IMPERS
+			     |
+		             @(SUBJ-NUM pl)
+                             @(SUBJ-PERS 3)}.
+
+	znaideno	V * @(VERB-SUBJ-OBJ znaity)			"find (-no/-to)"	    
+			    @NO-TO.
+
+	znaidenyi	V * @(VERB-SUBJ-OBJ znaity)			"find (participle, masc)"
+			    @(PARTICIPLE past)
+			    @(SUBJ-NUM sg)
+			    @(SUBJ-GEND masc).
+
+	znaidena	V * @(VERB-SUBJ-OBJ znaity)			"find (participle, fem)"
+			    @(PARTICIPLE past)
+			    @(SUBJ-NUM sg)
+			    @(SUBJ-GEND fem).
+
+	znaidene	V * @(VERB-SUBJ-OBJ znaity)			"find (participle, neut)"
+			    @(PARTICIPLE past)
+			    @(SUBJ-NUM sg)
+			    @(SUBJ-GEND neut).
+
+	znaideni	V * @(VERB-SUBJ-OBJ znaity)			"find (participle, pl)"
+			    @(PARTICIPLE past)
+			    @(SUBJ-NUM pl).
+
+"Auxiliaries"
+
+	buty		AUX * .
+
+	buv		AUX * @AUX-PAST
+			      @(SUBJ-NUM sg)
+			      @(SUBJ-GEND masc).
+
+	bula		AUX * @AUX-PAST
+			      @(SUBJ-NUM sg)
+			      @(SUBJ-GEND fem).
+
+	bulo		AUX * @AUX-PAST
+			      {@(SUBJ-NUM sg)
+			       @(SUBJ-GEND neut)
+			      |
+			       (^ VFORM) =c no_to}.
+
+	buly		AUX * @AUX-PAST
+			      @(SUBJ-NUM pl).
+
+"Adverbs"
+
+"Adverbs of time"
+
+	vden		Adv * @(S-ADV vden).				"during the day"
+
+	vrantsi 	Adv * @(S-ADV vrantsi).				"in the morning"
+
+	vlitku		Adv * @(S-ADV vlitku).				"in summer"
+
+"Adverbs of place"
+
+	tut		Adv * @(S-ADV tut).				"here"
+
+	nadvori		Adv * @(S-ADV nadvori).				"outside"
+
+	vdoma		Adv * @(S-ADV vdoma).				"at home"
+
+"Adverbs of manner"
+
+	myttievo	Adv * @(V-ADV myttievo).			"momentarily"
+
+	mitsno		Adv * @(V-ADV mitsno).				"soundly"
+
+"Adjectives"
+
+	tsikavu		Adj * @(ADJ-SG tsikavyi fem)			"interesting"
+			      @(CASE acc).
+
+	syniu 		Adj * @(ADJ-SG synii fem)			"blue"
+			      @(CASE acc).
+
+	novyi 		Adj * @(ADJ-SG novyi masc)			"new"
+			      @(CASE-SYN nom acc).
+
+	tsentralnu	Adj * @(ADJ-SG tsentralnyi fem)			"central/main"
+			      @(CASE-SYN nom acc).
+
+"Punctuation"
+
+. PERIOD * .
+
+----
+
