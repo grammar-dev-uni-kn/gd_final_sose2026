@@ -1,0 +1,19 @@
+PARGRAM    THAI   CONFIG (1.0)
+  ROOTCAT   S.
+  LEXENTRIES   (PARGRAM THAI).
+  RULES   (PARGRAM THAI).
+  TEMPLATES   (STANDARD COMMON) (PARGRAM THAI).
+  FEATURES   (STANDARD COMMON) (PARGRAM THAI).
+  GOVERNABLERELATIONS  SUBJ OBJ XCOMP .
+  SEMANTICFUNCTIONS    ADJUNCT.
+  EPSILON   e.
+  NONDISTRIBUTIVES    .
+  OPTIMALITYORDER     NOGOOD.
+  CHARACTERENCODING   UTF-8.
+  FILES common.features.lfg
+  		common.templates.lfg
+		thai-rules.lfg
+		thai-templates.lfg
+		thai-features.lfg
+		thai-lex.lfg.
+ ----

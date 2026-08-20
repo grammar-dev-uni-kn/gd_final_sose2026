@@ -1,0 +1,322 @@
+# GRAMMATICAL
+
+# 1. bare SV
+#     เขา	ทำ
+#     3SG	do
+#     '(S)he does it'
+
+เขาทำ
+
+# 2. SVO
+#     เขา	กิน	   ข้าว
+#     3SG	eat	  rice
+#     '(S)he eats rice'
+
+เขากินข้าว
+
+# 3. Intransitive
+#     เขา	เดิน
+#     3SG	walk
+#     '(S)he walks.'
+
+เขาเดิน
+
+# 4. SVC - 2 verbs
+#     เขา	เดิน	กิน	  ข้าว
+#     3SG	walk   eat	rice
+#     '(S)he walks over and eats rice.'
+
+เขาเดินกินข้าว
+
+# 5. SVC - 4 verbs
+#     เขา	เดิน	ออก	 ไป	 กิน   	ข้าว
+#     3SG	walk   exit	go	eat	 rice
+#     '(S)he walks out to eat rice.'
+
+เขาเดินออกไปกินข้าว
+
+# 6. SVC - 5 verbs
+#     เขา	เดิน	 ออก	 ไป	  นั่ง	  กิน	ข้าว
+#     3SG	walk	exit	go	 sit   eat	rice
+#     '(S)he walks out, sits down, and eats rice.'
+
+เขาเดินออกไปนั่งกินข้าว
+
+# 7. SVC + object control
+#     เขา	เดิน	ออก	  ไป	บอก	  แม่	  ให้	  กิน	ข้าว
+#     3SG	walk   exit	 go	   tell	 mother	COMP   eat	rice
+#     '(S)he walks out and tells mom to eat rice.'
+
+เขาเดินออกไปบอกแม่ให้กินข้าว
+
+# 8. object control, object dropped
+#     เขา	บอก	    ให้	     กิน	  ข้าว
+#     3SG	tell	COMP	eat	    rice
+#     '(S)he tells someone to eat.'
+
+เขาบอกให้กินข้าว
+
+# 9. evidential mood
+#     เขา	คง	ทำ
+#     3SG	EVAL	do
+#     "(S)he's probably doing it."
+
+เขาคงทำ
+
+# 10. realis aspect, pre-verbal
+#     เขา	ได้	ทำ
+#     3SG	REAL    do
+#     '(S)he did it.'
+
+เขาได้ทำ
+
+# 11. Ambiguous: post-verbal ได้ (compl/abil heterosemy) = 2 Solutions
+#     เขา	ทำ	ได้
+#     3SG	do	ABIL
+#     '(S)he can do it.'
+
+เขาทำได้
+
+# 12. perfective aspect
+#     เขา	ทำ	แล้ว
+#     3SG	do	PERF
+#     "(S)he's already done it."
+
+เขาทำแล้ว
+
+# 13. Ambiguous: post-verbal ได้ (compl/abil ambiguity) + perfective แล้ว = 2 Solutions
+#     เขา	ทำ	ได้	แล้ว
+#     3SG	do	ABIL	PERF
+#     '(S)he can already do it.'
+
+เขาทำได้แล้ว
+
+# 14. perfective + 2 clause-final particles (sfp + hedge)
+#     เขา	ทำ	แล้ว	ล่ะ	มั้ง
+#     3SG	do	PERF	SFP	HEDGE
+#     "(S)he's probably done it already, I'd guess."
+
+เขาทำแล้วล่ะมั้ง
+
+# 15. weak alethic necessity
+#     เขา	ควร     ทำ
+#     3SG	MOD.WK	do
+#     '(S)he should do it.'
+
+เขาควรทำ
+
+# 16. progressive aspect
+#     เขา	กำลัง	 ทำ
+#     3SG	PROG	do
+#     "(S)he's doing it."
+
+เขากำลังทำ
+
+# 17. realis aspect + transitive object
+#     เขา	ได้	กิน	ข้าว
+#     3SG	REAL	eat	rice
+#     '(S)he got to eat rice.'
+
+เขาได้กินข้าว
+
+# 18. transitive object + post-verbal ได้ ambiguity = 2 Solutions
+#     เขา	กิน	ข้าว	ได้
+#     3SG	eat	rice	ABIL
+#     '(S)he can eat rice.'
+
+เขากินข้าวได้
+
+# 19. weak alethic > strong alethic > progressive
+#     เขา	ควร	ต้อง		กำลัง	ทำ
+#     3SG	MOD.WK	MOD.STR	   	PROG	do
+#     '(S)he really ought to be doing it by now.'
+
+เขาควรต้องกำลังทำ
+
+# 20. weak alethic > progressive > deontic ต้อง (different order from above still grammatical)
+#     เขา	ควร	กำลัง	 ต้อง	ทำ
+#     3SG	MOD.WK	PROG	 OBL	do
+#     '(S)he should be having to do it right now.'
+
+เขาควรกำลังต้องทำ
+
+# 21. เคย as past then anterior around the irrealis modal จะ
+#     เขา	เคย	 จะ	เคย	ทำ
+#     3SG	PST	 IRR  	ANT	do
+#     "(S)he'd apparently done it before."
+
+เขาเคยจะเคยทำ
+
+# 22. the full stack, but with 2 post-verbal ได้ = ambiguity = 2 Solutions
+#     เขา	คง	อาจ	  จะ	ควร	ต้อง	 กำลัง	จะ	ได้	ทำ	ได้	แล้ว	ล่ะ	มั้ง
+#     3SG	EVAL	EPI	  IRR	MOD.WK	MOD.STR	 PROG	PROSP	REAL  	do	ABIL  	PERF  	SFP	HEDGE
+#     'Perhaps (s)he is probably supposed to be able to do it by now.'
+
+เขาคงอาจจะควรต้องกำลังจะได้ทำได้แล้วล่ะมั้ง
+
+# 23. weak alethic + transitive object
+#     เขา	ควร	กิน	ข้าว
+#     3SG	MOD.WK	eat	rice
+#     '(S)he should eat rice.'
+
+เขาควรกินข้าว
+
+# 24. progressive กำลัง + transitive object
+#     เขา	กำลัง	 กิน	ข้าว
+#     3SG	PROG	eat	rice
+#     "(S)he's eating rice."
+
+เขากำลังกินข้าว
+
+# 25. weak alethic + OBJ + post-verbal ได้ ambiguity = 2 Solutions
+#     เขา	ควร	กิน	 ข้าว	ได้
+#     3SG	MOD.WK	eat	 rice	ABIL
+#     '(S)he should be able to eat rice.'
+
+เขาควรกินข้าวได้
+
+# 26. evaluative + OBJ + perfective
+#     เขา	คง	กิน	ข้าว	แล้ว
+#     3SG	EVAL	eat	rice  	PERF
+#     "(S)he's probably already eaten rice."
+
+เขาคงกินข้าวแล้ว
+
+# 27. ต้อง has two readings (strong alethic and deontic) = 2 Solutions
+#     เขา	ต้อง	     	กิน	ข้าว
+#     3SG	MOD.STR/OBL	eat	rice
+#     '(S)he has to eat rice.'
+
+เขาต้องกินข้าว
+
+# 28. ควร (weak alethic) directly followed by ต้อง before an OBJ-taking verb = 2 Solutions
+#     เขา	ควร	ต้อง	     	กิน   	ข้าว
+#     3SG	MOD.WK	MOD.STR/OBL	eat	rice
+#     '(S)he really ought to eat rice.'
+
+เขาควรต้องกินข้าว
+
+# 29. SVC with modal
+#     เขา	ควร	    เดิน	 กิน    ข้าว
+#     3SG	MOD.WK	walk	eat	  rice
+#     '(S)he should walk over and eat rice.'
+
+เขาควรเดินกินข้าว
+
+# 30. SVC with auxiliary
+#     เขา	กำลัง	 เดิน	 ไป	  กิน	ข้าว
+#     3SG	PROG	walk   go	eat	 rice
+#     "(S)he's walking over to eat rice."
+
+เขากำลังเดินไปกินข้าว
+
+# 31. SVC with post-verbal auxiliary
+#     เขา	เดิน	กิน	  ข้าว	  แล้ว
+#     3SG	walk   eat	rice   PERF
+#     '(S)he already walked over and ate rice.'
+
+เขาเดินกินข้าวแล้ว
+
+# 32. SVC with modal ambiguity = 2 Solutions
+#     เขา	ควร	    ต้อง	      เดิน	  ไป	กิน	   ข้าว
+#     3SG	MOD.WK	MOD.STR/OBL	 walk	go	  eat	rice
+#     '(S)he really needs to go eat rice.'
+
+เขาควรต้องเดินไปกินข้าว
+
+# 33. SVC + modal + object control
+#     เขา	คง	    เดิน	 ออก	 ไป	  บอก	 แม่	  ให้	  กิน	ข้าว
+#     3SG	EVAL	walk	exit	go	 tell	mother	COMP   eat	rice
+#     "(S)he's probably walked out to tell mom to eat."
+
+เขาคงเดินออกไปบอกแม่ให้กินข้าว
+
+# 34. SVC + pre- and post-verbal auxiliaries
+#     เขา	ได้	     เดิน	  ออก	  ไป	กิน	   ข้าว	   แล้ว
+#     3SG	REAL	walk	exit	go	  eat	rice   PERF
+#     '(S)he already went out and ate.'
+
+เขาได้เดินออกไปกินข้าวแล้ว
+
+# 35. Full stack + SVC with ได้ ambiguity = 2 Solutions
+#     เขา	คง	   อาจ	จะ	 ควร	ต้อง	  กำลัง	  จะ	  ได้ 	   เดิน 	ออก	    ไป	 บอก	แม่	     ให้	 กิน   ข้าว	    ได้	    แล้ว     ล่ะ	มั้ง
+#     3SG	EVAL   EPI	IRR	 MOD.WK	MOD.STR	 PROG	PROSP	REAL	walk	exit	go	tell	mother	COMP   eat	rice	ABIL   PERF   SFP	HEDGE
+#     'Perhaps (s)he's probably supposed to have already gone and told mom to eat --- and apparently can, too.'
+
+เขาคงอาจจะควรต้องกำลังจะได้เดินออกไปบอกแม่ให้กินข้าวได้แล้วล่ะมั้ง
+
+
+######################################################################################################################################################
+
+
+# UNGRAMMATICAL
+
+# 1. epistemic before evidential.
+#     เขา	อาจ	 คง	    ทำ
+#     3SG	EPI	 EVAL	do
+#     'intended: perhaps (s)he probably does it'
+
+เขาอาจคงทำ
+
+# 2. strong before weak alethic ควร
+#     เขา	ต้อง	 ควร	 ทำ
+#     3SG	MOD.STR	MOD.WK	do
+#     'intended: (s)he must be supposed to do it'
+
+เขาต้องควรทำ
+
+# 3. progressive กำลัง before weak alethic ควร
+#     เขา	กำลัง	ควร	ทำ
+#     3SG	PROG	MOD.WK	do
+#     "intended: (s)he's currently supposed to do it"
+
+เขากำลังควรทำ
+
+# 4. perfective before post-verbal ได้
+#     เขา	ทำ	แล้ว	ได้
+#     3SG	do	PERF	ABIL
+#     "intended: (s)he's already done it, and can"
+
+เขาทำแล้วได้
+
+# 5. realis used twice pre-verbally
+#     เขา	ได้	     ได้	  กิน	ข้าว
+#     3SG	REAL	REAL	eat	rice
+#     'intended: (s)he already-already ate rice'
+
+เขาได้ได้กินข้าว
+
+# 6. realis before evidential
+#     เขา	ได้	     คง	     ทำ
+#     3SG	REAL	EVAL	do
+#     'intended: (s)he did probably do it'
+
+เขาได้คงทำ
+
+# 7. as #4, with an object
+#     เขา	กิน	  ข้าว	  แล้ว	   ได้
+#     3SG	eat	 rice	PERF	ABIL
+#     "intended: (s)he's already eaten rice, and can"
+
+เขากินข้าวแล้วได้
+
+# 8. as #3, with an object
+#     เขา	กำลัง	ควร	    กิน	  ข้าว
+#     3SG	PROG   MOD.WK  eat	rice
+#     "intended: (s)he's currently supposed to eat rice"
+
+เขากำลังควรกินข้าว
+
+# 9. as #1, with an object
+#     เขา	อาจ	 คง	   กิน	 ข้าว
+#     3SG	EPI	 EVAL  eat	rice
+#     'intended: perhaps (s)he probably eats rice'
+
+เขาอาจคงกินข้าว
+
+# 10. as #3/#8, with SVC chain
+#     เขา	กำลัง	ควร	    เดิน	กิน	   ข้าว
+#     3SG	PROG   MOD.WK  walk	  eat	rice
+#     "intended: (s)he's currently supposed to walk over and eat rice"
+
+เขากำลังควรเดินกินข้าว

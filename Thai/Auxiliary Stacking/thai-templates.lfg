@@ -1,0 +1,5 @@
+PARGRAM THAI TEMPLATES (1.0)
+
+AUX(_branch _attr _val) = (^ TAME _branch _attr) = _val.
+
+----

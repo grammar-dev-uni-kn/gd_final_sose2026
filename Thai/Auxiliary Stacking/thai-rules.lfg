@@ -1,0 +1,293 @@
+PARGRAM   THAI   RULES (1.0)
+
+S	-->	NP: @SUBJ;
+			{VP[Hedge]: ^=!
+			|VP[SpeechAct]: ^=!
+			|VP[MoodEval]: ^=!
+			|VP[ModEpi]: ^=!
+			|VP[TensePast]: ^=!
+			|VP[MoodIrr]: ^=!
+			|VP[TenseAnt]: ^=!
+			|VP[ModAletWeak]: ^=!
+			|VP[ModAletStrong]: ^=!
+			|VP[AspProg]: ^=!
+			|VP[ModObl]: ^=!
+			|VP[AspProsp]: ^=!
+			|VP[AspReal]: ^=!
+			|VP[Compl]: ^=!
+			|VP[Pftv]: ^=!
+			|VP: ^=!}.
+
+VP[_pos $ {MoodEval ModEpi TensePast MoodIrr TenseAnt ModAletWeak ModAletStrong AspProg ModObl AspProsp AspReal Compl Pftv SpeechAct Hedge}] -->
+			{Aux[Mood, eval]: ^=!
+			   @SUBJ-SUBJ-CONTROL;
+			 {VP[ModEpi]: (^ XCOMP)=!
+				   _pos = MoodEval
+			   |VP[TensePast]: (^ XCOMP)=!
+				   _pos = MoodEval
+			   |VP[MoodIrr]: (^ XCOMP)=!
+				   _pos = MoodEval
+			   |VP[TenseAnt]: (^ XCOMP)=!
+				   _pos = MoodEval
+			   |VP[ModAletWeak]: (^ XCOMP)=!
+				   _pos = MoodEval
+			   |VP[ModAletStrong]: (^ XCOMP)=!
+				   _pos = MoodEval
+			   |VP[AspProg]: (^ XCOMP)=!
+				   _pos = MoodEval
+			   |VP[ModObl]: (^ XCOMP)=!
+				   _pos = MoodEval
+			   |VP[AspProsp]: (^ XCOMP)=!
+				   _pos = MoodEval
+			   |VP[AspReal]: (^ XCOMP)=!
+				   _pos = MoodEval
+			   |VP[Compl]: (^ XCOMP)=!
+				   _pos = MoodEval
+			   |VP[Pftv]: (^ XCOMP)=!
+				   _pos = MoodEval
+			   |VP: (^ XCOMP)=!
+				   _pos = MoodEval}
+
+			|Aux[Mod, epi]: ^=!
+			   @SUBJ-SUBJ-CONTROL;
+			 {VP[TensePast]: (^ XCOMP)=!
+				   _pos = ModEpi
+			   |VP[MoodIrr]: (^ XCOMP)=!
+				   _pos = ModEpi
+			   |VP[TenseAnt]: (^ XCOMP)=!
+				   _pos = ModEpi
+			   |VP[ModAletWeak]: (^ XCOMP)=!
+				   _pos = ModEpi
+			   |VP[ModAletStrong]: (^ XCOMP)=!
+				   _pos = ModEpi
+			   |VP[AspProg]: (^ XCOMP)=!
+				   _pos = ModEpi
+			   |VP[ModObl]: (^ XCOMP)=!
+				   _pos = ModEpi
+			   |VP[AspProsp]: (^ XCOMP)=!
+				   _pos = ModEpi
+			   |VP[AspReal]: (^ XCOMP)=!
+				   _pos = ModEpi
+			   |VP[Compl]: (^ XCOMP)=!
+				   _pos = ModEpi
+			   |VP[Pftv]: (^ XCOMP)=!
+				   _pos = ModEpi
+			   |VP: (^ XCOMP)=!
+				   _pos = ModEpi}
+
+			|Aux[Tense, past]: ^=!;
+			 {VP[MoodIrr]: ^=!
+				   _pos = TensePast
+			   |VP[TenseAnt]: ^=!
+				   _pos = TensePast
+			   |VP[ModAletWeak]: ^=!
+				   _pos = TensePast
+			   |VP[ModAletStrong]: ^=!
+				   _pos = TensePast
+			   |VP[AspProg]: ^=!
+				   _pos = TensePast
+			   |VP[ModObl]: ^=!
+				   _pos = TensePast
+			   |VP[AspProsp]: ^=!
+				   _pos = TensePast
+			   |VP[AspReal]: ^=!
+				   _pos = TensePast
+			   |VP[Compl]: ^=!
+				   _pos = TensePast
+			   |VP[Pftv]: ^=!
+				   _pos = TensePast
+			   |VP: ^=!
+				   _pos = TensePast}
+
+			|Aux[Mood, irr]: ^=!
+			   @SUBJ-SUBJ-CONTROL;
+			 {VP[TenseAnt]: (^ XCOMP)=!
+				   _pos = MoodIrr
+			   |VP[ModAletWeak]: (^ XCOMP)=!
+				   _pos = MoodIrr
+			   |VP[ModAletStrong]: (^ XCOMP)=!
+				   _pos = MoodIrr
+			   |VP[AspProg]: (^ XCOMP)=!
+				   _pos = MoodIrr
+			   |VP[ModObl]: (^ XCOMP)=!
+				   _pos = MoodIrr
+			   |VP[AspProsp]: (^ XCOMP)=!
+				   _pos = MoodIrr
+			   |VP[AspReal]: (^ XCOMP)=!
+				   _pos = MoodIrr
+			   |VP[Compl]: (^ XCOMP)=!
+				   _pos = MoodIrr
+			   |VP[Pftv]: (^ XCOMP)=!
+				   _pos = MoodIrr
+			   |VP: (^ XCOMP)=!
+				   _pos = MoodIrr}
+
+			|Aux[Tense, ant]: ^=!;
+			 {VP[ModAletWeak]: ^=!
+				   _pos = TenseAnt
+			   |VP[ModAletStrong]: ^=!
+				   _pos = TenseAnt
+			   |VP[AspProg]: ^=!
+				   _pos = TenseAnt
+			   |VP[ModObl]: ^=!
+				   _pos = TenseAnt
+			   |VP[AspProsp]: ^=!
+				   _pos = TenseAnt
+			   |VP[AspReal]: ^=!
+				   _pos = TenseAnt
+			   |VP[Compl]: ^=!
+				   _pos = TenseAnt
+			   |VP[Pftv]: ^=!
+				   _pos = TenseAnt
+			   |VP: ^=!
+				   _pos = TenseAnt}
+
+			|Aux[Mod, alet, weak]: ^=!
+			   @SUBJ-SUBJ-CONTROL;
+			 {VP[ModAletStrong]: (^ XCOMP)=!
+				   _pos = ModAletWeak
+			   |VP[AspProg]: (^ XCOMP)=!
+				   _pos = ModAletWeak
+			   |VP[ModObl]: (^ XCOMP)=!
+				   _pos = ModAletWeak
+			   |VP[AspProsp]: (^ XCOMP)=!
+				   _pos = ModAletWeak
+			   |VP[AspReal]: (^ XCOMP)=!
+				   _pos = ModAletWeak
+			   |VP[Compl]: (^ XCOMP)=!
+				   _pos = ModAletWeak
+			   |VP[Pftv]: (^ XCOMP)=!
+				   _pos = ModAletWeak
+			   |VP: (^ XCOMP)=!
+				   _pos = ModAletWeak}
+
+			|Aux[Mod, alet, strong]: ^=!
+			   @SUBJ-SUBJ-CONTROL;
+			 {VP[AspProg]: (^ XCOMP)=!
+				   _pos = ModAletStrong
+			   |VP[ModObl]: (^ XCOMP)=!
+				   _pos = ModAletStrong
+			   |VP[AspProsp]: (^ XCOMP)=!
+				   _pos = ModAletStrong
+			   |VP[AspReal]: (^ XCOMP)=!
+				   _pos = ModAletStrong
+			   |VP[Compl]: (^ XCOMP)=!
+				   _pos = ModAletStrong
+			   |VP[Pftv]: (^ XCOMP)=!
+				   _pos = ModAletStrong
+			   |VP: (^ XCOMP)=!
+				   _pos = ModAletStrong}
+
+			|Aux[Asp, prog]: ^=!;
+			 {VP[ModObl]: ^=!
+				   _pos = AspProg
+			   |VP[AspProsp]: ^=!
+				   _pos = AspProg
+			   |VP[AspReal]: ^=!
+				   _pos = AspProg
+			   |VP[Compl]: ^=!
+				   _pos = AspProg
+			   |VP[Pftv]: ^=!
+				   _pos = AspProg
+			   |VP: ^=!
+				   _pos = AspProg}
+
+			|Aux[Mod, obl]: ^=!
+			   @SUBJ-SUBJ-CONTROL;
+			 {VP[AspProsp]: (^ XCOMP)=!
+				   _pos = ModObl
+			   |VP[AspReal]: (^ XCOMP)=!
+				   _pos = ModObl
+			   |VP[Compl]: (^ XCOMP)=!
+				   _pos = ModObl
+			   |VP[Pftv]: (^ XCOMP)=!
+				   _pos = ModObl
+			   |VP: (^ XCOMP)=!
+				   _pos = ModObl}
+
+			|Aux[Asp, prosp]: ^=!;
+			 {VP[AspReal]: ^=!
+				   _pos = AspProsp
+			   |VP[Compl]: ^=!
+				   _pos = AspProsp
+			   |VP[Pftv]: ^=!
+				   _pos = AspProsp
+			   |VP: ^=!
+				   _pos = AspProsp}
+
+			|Aux[Asp, real]: ^=!;
+			 {VP[Compl]: ^=!
+				   _pos = AspReal
+			 |VP[Pftv]: ^=!
+				   _pos = AspReal
+			 |VP: ^=!
+				   _pos = AspReal}
+
+			|{VP[MoodEval]: ^=!
+			 |VP[ModEpi]: ^=!
+			 |VP[TensePast]: ^=!
+			 |VP[MoodIrr]: ^=!
+			 |VP[TenseAnt]: ^=!
+			 |VP[ModAletWeak]: ^=!
+			 |VP[ModAletStrong]: ^=!
+			 |VP[AspProg]: ^=!
+			 |VP[ModObl]: ^=!
+			 |VP[AspProsp]: ^=!
+			 |VP[AspReal]: ^=!
+			 |VP[Compl]: ^=!
+			 |VP[Pftv]: ^=!
+			 |VP: ^=!}
+			 Aux[Mood, sfp]: ^=!
+				   _pos = SpeechAct
+
+			|{VP[SpeechAct]: ^=!
+			 |VP[MoodEval]: ^=!
+			 |VP[ModEpi]: ^=!
+			 |VP[TensePast]: ^=!
+			 |VP[MoodIrr]: ^=!
+			 |VP[TenseAnt]: ^=!
+			 |VP[ModAletWeak]: ^=!
+			 |VP[ModAletStrong]: ^=!
+			 |VP[AspProg]: ^=!
+			 |VP[ModObl]: ^=!
+			 |VP[AspProsp]: ^=!
+			 |VP[AspReal]: ^=!
+			 |VP[Compl]: ^=!
+			 |VP[Pftv]: ^=!
+			 |VP: ^=!}
+			 Aux[Mood, hedge]: ^=!
+				   _pos = Hedge
+
+			|(SVC: ! $ (^ ADJUNCT)
+			   (! SUBJ)=(^ SUBJ))*
+			 V: ^=!;
+			 (NP: @OBJ)
+			 {Aux[Asp, compl]: ^=!
+				   _pos = Compl
+			 |Aux[Asp, abil]: ^=!
+				   _pos = Compl}
+
+			|{VP[Compl]: ^=!
+			 |(SVC: ! $ (^ ADJUNCT)
+			    (! SUBJ)=(^ SUBJ))*
+			  V: ^=!;
+			  (NP: @OBJ)}
+			 Aux[Asp, perf]: ^=!
+				   _pos = Pftv}.
+
+VP	-->	(SVC: ! $ (^ ADJUNCT)
+			   (! SUBJ)=(^ SUBJ))*
+			{V: ^=!;
+			 (NP: @OBJ)
+			|Vctrl: ^=!;
+			 {NP: @OBJ
+			 |e: (^ OBJ PRED) = 'pro'}
+			 Comp: ^=!;
+			 {VP[Compl]: (^ XCOMP)=!
+			 |VP[Pftv]: (^ XCOMP)=!
+			 |VP: (^ XCOMP)=!}}.
+
+NP	-->	{Pron: ^=!
+		|N: ^=!}.
+
+----
