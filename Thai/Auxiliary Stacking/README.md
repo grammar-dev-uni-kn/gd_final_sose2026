@@ -1,6 +1,9 @@
 # Thai Auxiliary Stacking
+
 Author: **Piyapath T Spencer**
+
 Language under study: **Thai**
+
 Phenomena: **Functional Heads, Auxiliary/Modal Stacking**
 
 
