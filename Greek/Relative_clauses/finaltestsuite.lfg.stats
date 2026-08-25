@@ -1,0 +1,42 @@
+((1) (1 0.011 10) (3 words))
+((2) (1 0.004 24) (6 words))
+((3) (1 0.002 25) (6 words))
+((4) (1 0.001 26) (7 words))
+((5) (1 0.003 18) (6 words))
+((6) (2 0.002 29) (9 words))
+((7) (1 0.002 30) (9 words))
+((8) (1 0.002 29) (8 words))
+((9) (1 0.002 29) (8 words))
+((10) (1 0.002 44) (12 words))
+((11) (1 0.002 48) (12 words))
+((12) (0 0.001 10) (7 words))
+((13) (0 0.001 0) (7 words))
+((14) (0 0.001 27) (9 words))
+((15) (0 0.001 21) (8 words))
+((16) (0 0.002 10) (3 words))
+
+XLE release of Mar 17, 2017 21:12.
+Grammar = /mnt/c/Users/kassi/OneDrive/Έγγραφα/master/(3) sose 26/Grammar Development/gd_final_sose2026/Greek/Relative_clauses/finalgrammar.lfg.
+Grammar last modified on Aug 12, 2026 17:34.
+Host machine is KD.
+16 sentences, 0 errors, 0 mismatches
+5 sentences had 0 parses
+11 good sentences
+10 sentences had exactly one grammatical parse
+timeout = 15
+max_xle_scratch_storage = 100 MB
+prune_subtree_location = 1
+max_new_events_per_graph_when_skimming = 500
+maximum raw subtrees per sentence = 86 (#11)
+maximum event count per sentence = 1537
+average event count per graph = 31.305
+tokens = 0.0%, morph = 3.1%, multiword = 0.0%, lex = 83.7%, chart = 7.4%,
+unifier = 5.8%, completer = 0.0%, solver = 0.0%, output = 0.0%
+max_alloc_mem = 243.29 MB
+0.039 CPU secs total, 0.011 CPU secs max
+elapsed time = 0 seconds
+  range parsed failed  words   seconds  subtrees     optimal
+   1-10      9      5   6.89     0.003     24.44        1.11
+  11-20      2      0  12.00     0.002     46.00        1.00
+    all     11      5   7.82     0.003     28.36        1.09
+0.34 of the variance in seconds is explained by the number of subtrees

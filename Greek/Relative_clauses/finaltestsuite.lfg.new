@@ -1,0 +1,69 @@
+#grammatical sentences
+
+# 1. the mother sleeps
+
+h mhtera koimatai.       (1 0.011 10)
+
+# 2. the mother, that is tired, sleeps
+
+h mhtera, poy einai koyrasmenh, koimatai.    (1 0.004 24)
+
+# 3. she, who is tired, sleeps
+
+ayth, h opoia einai koyrasmenh, koimatai.   (1 0.002 25)
+
+# 4. the mother, who sleeps, is tired
+
+h mhtera, h opoia koimatai, einai koyrasmenh.   (1 0.001 26)
+
+# 5. Peter petted the brown dog
+
+o Petros xaidepse to kafe skyli.     (1 0.003 18)
+
+# 6. Peter petted the dog, who is hungry 
+
+o Petros xaidepse to skyli, to opoio einai peinasmeno.  (2 0.002 29)
+
+# 7. the mother hugged Peter, whom she loves
+
+h mhtera agkaliase ton Petro, ton opoio ayth agapaei.    (1 0.002 30)
+
+# 8. Peter hugged her, whom he loves
+
+o Petros agkaliase aythn, thn opoia aytos agapaei.  (1 0.002 29)
+
+# 9. Peter, that loves animals, petted the dog.   
+
+o Petros, poy einai filozwos, xaidepse to skyli.    (1 0.002 29)
+
+# 10. Peter, that loves animals, petted the dog, whom he adopted
+
+o Petros, poy einai filozwos, xaidepse to skyli, to opoio aytos yiothetise.  (1 0.002 44)
+
+# 11. Peter, who loves animals, petted it, that has brown fur
+
+o Petros, o opoios einai filozwos, xaidepse ayto, poy exei kafe trixwma.   (1 0.002 48)
+
+# ungrammatical sentences
+
+# 12. gender agreement violation between determiner and relative pronoun
+
+h mhtera, to opoia einai koyrasmenh, koimatai. (0 0.001 10)
+
+# 13. gender agreement violation between determiner, proper noun and adjective
+
+to Petros, o opoio einai filozwo, koimatai (0 0.001 0)
+
+# 14. case violation: object in nominative (its relative pronoun in accusative)
+
+h mhtera agkaliase o Petros, ton opoio ayth agapaei.    (0 0.001 27)
+
+# 15. case violation: object and its relative pronoun in nominative
+
+o Petros agkaliase aythn, h opoia aytos agapaei.  (0 0.001 21)
+
+# 16. transitive verb without object
+
+o Petros agkaliase. (0 0.002 10)
+
+# 16 sentences, 0.039 CPU secs total, 0.011 CPU secs max (08/18/26)

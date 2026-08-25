@@ -1,0 +1,266 @@
+DEMO   ENGLISH   CONFIG (1.0)
+  ROOTCAT   S.
+  FILES  .
+  LEXENTRIES   (DEMO ENGLISH).
+  TEMPLATES (DEMO ENGLISH). 
+  RULES   (DEMO ENGLISH).
+  GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
+  NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
+  EPSILON   e.
+  OPTIMALITYORDER NOGOOD.
+  GENOPTIMALITYORDER NOGOOD .
+
+----
+
+DEMO   ENGLISH   RULES (1.0)
+
+
+   S --> NP: (^ SUBJ)=!
+	      (! CASE)= nom;
+ 	 VP
+         (PERIOD).
+
+
+   VP --> V 
+ 	  AP*: (^ OBJ)=!;               "non-attributive adjectives"     
+          (NP: (^ OBJ)=!
+	      (! CASE)= acc).
+        
+
+   NP --> {(D)  
+	  (AP: ! $ (^ ADJUNCT))            "attributive adj"                               
+	  N
+          |
+	  PRON : (^ PRON-TYPE) =c pers}
+          (RELS: ! $ (^ ADJUNCT)).                        
+       
+  AP  -->  A.
+
+  PRON --> (D)
+           Pron: ^ = !
+           {(^PRON-TYPE)=rel|
+            (^PRON-TYPE)=pers}.
+
+   RELS --> COMMA                     "Relative sentence"
+	    PRON : {(^ SUBJ)=!          "pronoun as subject"
+                   "(! CASE)=c nom"
+                   (^PRON-TYPE)=rel
+                   |
+                    (^ OBJ)=!           "pronoun as object: whom"
+                   (! CASE)=c acc
+		   (^PRON-TYPE)=rel};
+           (NP :   (^ SUBJ)=!
+                   (! CASE)=c nom)
+           VP
+           (COMMA).
+
+
+----
+
+DEMO ENGLISH TEMPLATES (1.0)                                  
+
+
+INTRANS(P) = (^ PRED)='P<(^ SUBJ)>'.        "intransitives"
+
+TRANS(P) = (^ PRED)='P<(^ SUBJ) (^ OBJ)>'.   "transitives"
+
+OPT-TRANS(P) = { @(INTRANS P) | @(TRANS P) }.  "either trans or intrans" 
+
+DITRANS(P) = (^ PRED)='P<(^ SUBJ) (^ OBJ)(^ OBL-TO)>'.  "ditransitives"
+
+
+AP(P) = (^PRED) = 'P'.               "adjectives"
+
+
+PRON(P N Z T) = (^PRED) = 'P'         "pronouns"
+	        (^ NUM) = N
+	        (^ GEND) = Z
+	        (^ CASE) = T.
+----
+
+DEMO ENGLISH LEXICON (1.0)
+
+
+einai         V *  (^MOOD) = indicative
+		   @(TRANS be).
+
+
+xaidepse  V *  (^MOOD) = indicative
+               (^TENSE)= past
+		@(TRANS pet).
+
+exei     V *  (^MOOD) = indicative
+		@(TRANS have).
+	      
+               
+agapaei     V *  (^MOOD) = indicative
+                @(TRANS love).
+
+agkaliase   V *  (^MOOD) = indicative
+		(^TENSE)= past
+                @(TRANS hug).
+             
+
+koimatai    V *  (^ MOOD) = indicative
+                @(INTRANS sleep).
+
+yiothetise  V *  (^MOOD) = indicative
+                 (^TENSE)= past
+		 @(TRANS adopt).
+		
+
+"NOUNS"
+
+mhtera  N * (^ PRED) = 'mother'
+	      (^ NUM) = sg
+	      (^ PERS) = 3
+              (^GEND) = fem
+	      (^CASE) = nom.
+
+
+skyli   N * (^ PRED) = 'dog'
+	    (^ NUM) = sg
+	    (^ PERS) = 3
+            (^GEND) = neut.
+
+
+Petros   N * (^ PRED) = 'Peter'
+	     (^N-TYPE)= Proper
+	    (^ NUM) = sg
+	    (^ PERS) = 3
+            (^GEND) = masc
+	    (^CASE) = nom.
+
+Petro   N * (^ PRED) = 'Peter'
+	    (^N-TYPE)= Proper
+	    (^ NUM) = sg
+	    (^ PERS) = 3
+            (^GEND) = masc
+	    (^CASE) = acc.
+
+
+
+trixwma   N * (^ PRED) = 'fur'
+	    (^ NUM) = sg
+	    (^ PERS) = 3
+            (^GEND) = neut.
+
+
+"ADJECTIVES"
+
+
+peinasmeno   A * @(AP hungry).
+
+filozwos    A * @(AP animal-lover).
+
+kafe       A *  @(AP brown).
+
+koyrasmenh  A *  @(AP tired).
+
+
+
+"DETERMINERS"
+
+o  	  D *  (^ DEF) = +
+		(^GEND) = masc
+                (^CASE) = nom.
+
+h   	  D *  (^ DEF) = +
+		(^GEND) = fem
+		(^CASE) = nom.
+
+to        D *  (^ DEF) = +
+		(^GEND) = neut.
+
+toy       D *  (^ DEF) = +
+		(^CASE) = gen.
+
+ton        D *  (^ DEF) = +
+                (^GEND) = masc
+		(^CASE) = acc.
+
+thn        D *  (^ DEF) = +
+                (^GEND) = fem
+		(^CASE) = acc.
+
+
+
+"RELATIVE PRONOUNS"
+
+opoios  Pron * @(PRON who sg masc nom)
+		(^ DEF) =c +
+		(^PRON-TYPE)=rel
+		 (^GEND) =c masc.
+
+opoia    Pron * {@(PRON who sg fem nom)
+		(^ DEF) =c +
+		(^PRON-TYPE)=rel
+                (^GEND) =c fem
+		|
+		@(PRON who sg fem acc)
+		(^ DEF) =c +
+		(^PRON-TYPE)=rel
+                (^GEND) =c fem}.
+ 
+opoio    Pron * {@(PRON who sg masc acc)
+		(^ DEF) =c +
+		(^PRON-TYPE)=rel
+		 (^GEND) =c masc
+		|
+		@(PRON who sg neut nom)
+		(^ DEF) =c +
+		(^PRON-TYPE)=rel
+		 (^GEND) =c neut
+		|
+		@(PRON who sg neut acc)
+		(^ DEF) =c +
+		(^PRON-TYPE)=rel
+		 (^GEND) =c neut}.
+
+opoioy   Pron * @(PRON whose sg masc gen)
+		(^ DEF) =c +
+		(^PRON-TYPE)=rel
+		 (^GEND) =c masc.
+
+poy      Pron * (^ PRED) = 'that'
+		(^PRON-TYPE)=rel
+		(! CASE)= nom
+		(^ DEF) ~= +.       "it must not follow a determiner" 
+
+
+"PERSONAL PRONOUNS"
+
+ayth    Pron * @(PRON she sg fem nom)
+		(^ DEF) ~= +
+		(^PRON-TYPE)=pers.
+
+aythn  Pron *	@(PRON she sg fem acc)
+		(^ DEF) ~= +
+		(^PRON-TYPE)=pers.
+
+aytos   Pron * @(PRON he sg masc nom)
+		(^ DEF) ~= +
+		(^PRON-TYPE)=pers.
+
+ayton   Pron * @(PRON he sg masc acc)
+		(^ DEF) ~= +
+		(^PRON-TYPE)=pers.
+
+ayto    Pron * {@(PRON it sg neut nom)
+		(^ DEF) ~= +
+		(^PRON-TYPE)=pers
+		|
+		@(PRON it sg neut acc)
+		(^ DEF) ~= +
+		(^PRON-TYPE)=pers}.
+
+
+
+"PUNCTUATION"
+
+.  PERIOD * .
+
+,  COMMA * .
+
+----
