@@ -1,0 +1,65 @@
+#default enclisis
+
+A Maria vê o (1 0.010 16)
+
+#neutral sentence without clitics
+
+A Maria vê o João (2 0.004 29)
+
+#proclisis triggered by negation
+
+A Maria não o vê (1 0.000 18)
+
+# default enclisis with personal pronoun as SUBJ
+
+Eu vejo o (1 0.004 14)
+
+#proclisis triggered by negation with dative clitic
+
+O João não me vê (1 0.000 18)
+
+#proclisis triggered by adverb
+
+O João raramente me vê (1 0.000 18)
+
+#enclisis in the precence of adverb 
+
+O João vê me raramente (1 0.004 18)
+
+# proclisis triggered by CP
+
+O João disse que me vê (1 0.000 23)
+
+# Topicalization enclisis
+
+Este livro, dou te eu (1 0.004 17)
+
+# Proclisis in CP with adverbs 
+
+Eu sei que ele ainda não o visitou (1 0.004 28)
+
+
+
+#incorrect#
+
+#proclisis without triggers
+
+A Maria o vê (0 0.000 0)
+
+#enclisis despite trigger negation
+
+A Maria não vê o (0 0.000 0)
+
+#enclisis despite trigger adverb
+
+O João raramente vê me (0 0.000 0)
+
+#enclisis despite trigger CP
+
+O João disse que vê me (0 0.004 0)
+
+#proclisis despite topicalization
+
+Este livro, eu te dou  (0 0.000 0)
+
+# 15 sentences, 0.034 CPU secs total, 0.010 CPU secs max (08/11/26)

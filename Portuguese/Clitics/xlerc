@@ -1,0 +1,20 @@
+#set encoding to utf-8
+set-character-encoding stdio utf-8
+
+# set timeout lower; amounts are in seconds
+set timeout 15
+
+# relpath turns a relative path name into an absolute one
+proc relpath {path} {
+set home [string trimright [file dirname [info script]] ./]
+set home [file join [pwd] $home]
+return [file normalize [file join $home $path]]
+}
+
+#specify grammar
+set defaultParser [relpath GRAMMAR_Portuguese.lfg]
+
+#load parser
+create-parser $defaultParser
+
+parse-testfile testsuite_Portuguese.lfg

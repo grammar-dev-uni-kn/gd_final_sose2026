@@ -1,0 +1,63 @@
+#default enclisis
+
+A Maria vê o
+
+#neutral sentence without clitics
+
+A Maria vê o João
+
+#proclisis triggered by negation
+
+A Maria não o vê
+
+# default enclisis with personal pronoun as SUBJ
+ 
+Eu vejo o
+
+#proclisis triggered by negation with dative clitic
+
+O João não me vê
+
+#proclisis triggered by adverb
+
+O João raramente me vê
+
+#enclisis in the precence of adverb 
+
+O João vê me raramente
+
+# proclisis triggered by CP
+
+O João disse que me vê
+
+# Topicalization enclisis
+
+Este livro, dou te eu
+
+# Proclisis in CP with adverbs 
+
+Eu sei que ele ainda não o visitou
+
+
+
+#incorrect#
+
+#proclisis without triggers
+
+A Maria o vê
+
+#enclisis despite trigger negation
+
+A Maria não vê o
+
+#enclisis despite trigger adverb
+
+O João raramente vê me
+
+#enclisis despite trigger CP
+
+O João disse que vê me
+
+#proclisis despite topicalization
+
+Este livro, eu te dou 
