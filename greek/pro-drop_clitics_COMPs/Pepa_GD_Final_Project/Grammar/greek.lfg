@@ -1,0 +1,948 @@
+DEMO   GREEK   CONFIG (1.0)
+  ROOTCAT   ROOT.
+  FILES  .
+  LEXENTRIES   (DEMO GREEK).
+  TEMPLATES (DEMO GREEK).
+  RULES   (DEMO GREEK).
+  GOVERNABLERELATIONS    SUBJ OBJ OBL OBJ2 OBL-TO COMP.
+  SEMANTICFUNCTIONS    ADJUNCT STANDARD.
+  NONDISTRIBUTIVES    NUM PERS.
+  EPSILON   e.
+  OPTIMALITYORDER NOGOOD.
+  GENOPTIMALITYORDER NOGOOD.
+
+----
+
+
+DEMO   GREEK   RULES (1.0)
+
+  ROOT --> { S
+           | Simp }.
+
+  S -->    ({ADV*: !$(^ ADJUNCT)
+           | PP*: !$(^ ADJUNCT) }) "Free word order - they can appear at the beginning of a clause"
+           (NP: (^ TOPIC) = !
+            (^ COMP* OBJ) = !
+            { (! CASE) =c gen
+            | (! CASE) =c acc })
+         NP: (^ SUBJ) = !
+           (! CASE) =c nom; "The subjects always has to be in Nominative case"
+         VP: ^ = !
+           (^ SUBJ PERS) = (^ VPERS)
+           (^ SUBJ NUM) = (^ VNUM). "Subject-Verb agreement in person & number"
+
+  
+  Simp -->  ({ADV*: !$(^ ADJUNCT)
+           | PP*: !$(^ ADJUNCT) })
+            (NP: (^ TOPIC) = !
+            (^ COMP* OBJ) = !
+            { (! CASE) =c gen
+            | (! CASE) =c acc })
+            e: (^ SUBJ PRED) = 'pro'
+               (^ SUBJ PERS) = (^ VPERS) "Pro-drop: null subject, licensed by verb agreement (person & number)"
+               (^ SUBJ NUM) = (^ VNUM); 
+            VP: ^ = !.
+
+OTICOMP --> OTI: @MOOD-IND; "The COMP is inserted with the use of the word 'oti'. It is either an S or a Simp"
+            { Simp: ^ = !
+            | S: ^ = ! }.
+
+VP --> (PRON: (^ OBJ2) = !
+              (! PRON-TYPE) =c clitic
+              (! CASE) =c gen)
+       (PRON: (^ OBJ) = !
+              (! PRON-TYPE) =c clitic
+              (! CASE) =c acc)
+        V: ^ = !;
+       ({ NP: (^ OBJ) = ! (! CASE) =c acc;
+         PP: (^ OBL-TO) = ! (! PTYPE) =c nosem
+       | PP: (^ OBL-TO) = ! (! PTYPE) =c nosem;
+         NP: (^ OBJ) = ! (! CASE) =c acc
+       | NP: (^ OBJ) = ! (! CASE) =c acc
+       | PP: (^ OBL-TO) = ! (! PTYPE) =c nosem } )
+       (NP: (^ OBJ2) = ! (! CASE) =c gen)
+       ({ ADV: !$(^ADJUNCT)
+        | PP: !$(^ADJUNCT) (! PTYPE) =c sem } )*
+       (OTICOMP: (^ COMP) = !).
+
+
+  NP --> (D: ^ = !)
+         (AP*: !$(^ ADJUNCT)
+         (! GEND) =c (^ GEND)
+             (! NUM)  =c (^ NUM)
+             (! CASE) =c (^ CASE))
+          N: ^ = !.
+
+  PP --> P: ^ = !;
+         (D: ^ = !)
+         NP: (^ OBJ) = !.
+
+  AP --> (ADV: ! $ (^ ADJUNCT))
+          A
+         (COMMA).
+
+
+----
+
+DEMO   GREEK   TEMPLATES (1.0)
+
+
+"Verb mood"
+
+MOOD-IND = (^ MOOD) = indicative.
+
+
+"Verb tense"
+
+PRESENT = (^ TENSE) = pres.
+PAST = (^ TENSE) = past.
+
+
+"Verb aspect"
+
+ASPECT-PERF = (^ ASPECT) = perfective.
+ASPECT-IMPERF = (^ ASPECT) = imperfective.
+
+
+"Agreement: stores agreement on the verb for pro-drop licensing"
+AGR(P N) = (^ VPERS) = P
+           (^ VNUM)  = N.
+
+
+"Verb voice"
+
+VOICE-ACT = (^ VOICE) = active.
+VOICE-PASS = (^ VOICE) = passive.
+
+
+"Verb arguments - with examples in english for better understanding"
+
+INTRANS(P) = (^ PRED) = 'P<(^ SUBJ)>'. "e.g. I run"
+
+TRANS(P) = (^ PRED) = 'P<(^ SUBJ)(^ OBJ)>'. "e.g. I love chocolate"
+
+OPT-TRANS(P) = { @(INTRANS P) | @(TRANS P) }. "e.g. I eat / I eat food"
+
+DITRANS(P) = { (^ PRED)='P<(^ SUBJ)(^ OBJ)(^ OBL-TO)>' "e.g. I gave flowers to Mary"
+                | (^ PRED)='P<(^ SUBJ)(^ OBJ)(^ OBJ2)>' }.  "e.g. I gave Mary flowers"
+
+GEN-COMP(P) = (^ PRED) = 'P<(^ SUBJ)(^ OBJ2)(^ COMP)>'. "e.g. I told you that I love you"
+
+OBJ-COMP(P) = (^ PRED) = 'P<(^ SUBJ)(^ OBJ)(^ COMP)>'. "e.g. I informed him that dinner is ready"
+
+COMP-ONLY(P) = (^ PRED) = 'P<(^ SUBJ)(^ COMP)>'. "e.g. I said that I love chocolate"
+
+GOAL(P) = (^ PRED) = 'P<(^ SUBJ)(^ OBL-TO)>'. "e.g. I go to the cinema"
+
+
+"Gender"
+
+NOUN-MASC = (^ GEND) = masc.
+
+NOUN-FEM  = (^ GEND) = fem.
+
+NOUN-NEUT = (^ GEND) = neut.
+
+
+"NOUNS: Number and Case"
+
+NOUN-NOM-SG = (^ NUM) = sg
+              (^ CASE) = nom
+              (^ PERS) = 3.
+
+NOUN-NOM-PL = (^ NUM) = pl
+              (^ CASE) = nom
+              (^ PERS) = 3.
+
+NOUN-GEN-SG = (^ NUM) = sg
+              (^ CASE) = gen
+              (^ PERS) = 3.
+
+NOUN-GEN-PL = (^ NUM) = pl
+              (^ CASE) = gen
+              (^ PERS) = 3.
+
+NOUN-ACC-SG = (^ NUM) = sg
+              (^ CASE) = acc
+              (^ PERS) = 3.
+
+NOUN-ACC-PL = (^ NUM) = pl
+              (^ CASE) = acc
+              (^ PERS) = 3.
+
+NOUN-VOC-SG = (^ NUM) = sg
+              (^ CASE) = voc
+              (^ PERS) = 3.
+
+NOUN-VOC-PL = (^ NUM) = pl
+              (^ CASE) = voc
+              (^ PERS) = 3.
+
+
+"Determiner agreement"
+
+DET-MASC-SG-NOM = (^ GEND) =c masc
+                 (^ NUM)  =c sg
+                 (^ CASE) =c nom
+                 (^ PERS) = 3.
+
+DET-MASC-PL-NOM = (^ GEND) =c masc
+                 (^ NUM)  =c pl
+                 (^ CASE) =c nom
+                 (^ PERS) = 3.
+
+DET-MASC-SG-GEN = (^ GEND) =c masc
+                 (^ NUM)  =c sg
+                 (^ CASE) =c gen
+                 (^ PERS) = 3.
+
+DET-MASC-PL-GEN = (^ GEND) =c masc
+                 (^ NUM)  =c pl
+                 (^ CASE) =c gen
+                 (^ PERS) = 3.
+
+DET-MASC-SG-ACC = (^ GEND) =c masc
+                 (^ NUM)  =c sg
+                 (^ CASE) =c acc
+                 (^ PERS) = 3.
+
+DET-MASC-PL-ACC = (^ GEND) =c masc
+                 (^ NUM)  =c pl
+                 (^ CASE) =c acc
+                 (^ PERS) = 3.
+
+DET-FEM-SG-NOM = (^ GEND) =c fem
+                 (^ NUM)  =c sg
+                 (^ CASE) =c nom
+                 (^ PERS) = 3.
+
+DET-FEM-PL-NOM = (^ GEND) =c fem
+                 (^ NUM)  =c pl
+                 (^ CASE) =c nom
+                 (^ PERS) = 3.
+
+DET-FEM-SG-GEN = (^ GEND) =c fem
+                 (^ NUM)  =c sg
+                 (^ CASE) =c gen
+                 (^ PERS) = 3.
+
+DET-FEM-PL-GEN = (^ GEND) =c fem
+                 (^ NUM)  =c pl
+                 (^ CASE) =c gen
+                 (^ PERS) = 3.
+
+DET-FEM-SG-ACC = (^ GEND) =c fem
+                 (^ NUM)  =c sg
+                 (^ CASE) =c acc
+                 (^ PERS) = 3.
+
+DET-FEM-PL-ACC = (^ GEND) =c fem
+                 (^ NUM)  =c pl
+                 (^ CASE) =c acc
+                 (^ PERS) = 3.
+
+DET-NEUT-SG-NOM = (^ GEND) =c neut
+                 (^ NUM)  =c sg
+                 (^ CASE) =c nom
+                 (^ PERS) = 3.
+
+DET-NEUT-PL-NOM = (^ GEND) =c neut
+                 (^ NUM)  =c pl
+                 (^ CASE) =c nom
+                 (^ PERS) = 3.
+
+DET-NEUT-SG-GEN = (^ GEND) =c neut
+                 (^ NUM)  =c sg
+                 (^ CASE) =c gen
+                 (^ PERS) = 3.
+
+DET-NEUT-PL-GEN = (^ GEND) =c neut
+                 (^ NUM)  =c pl
+                 (^ CASE) =c gen
+                 (^ PERS) = 3.
+
+DET-NEUT-SG-ACC = (^ GEND) =c neut
+                 (^ NUM)  =c sg
+                 (^ CASE) =c acc
+                 (^ PERS) = 3.
+
+DET-NEUT-PL-ACC = (^ GEND) =c neut
+                 (^ NUM)  =c pl
+                 (^ CASE) =c acc
+                 (^ PERS) = 3.
+
+
+"Adjectives - Noun agreement"
+
+ADJ-AGR(G N C) = (^ GEND) = G
+                 (^ NUM)  = N
+                 (^ CASE) = C.
+
+
+"Pronoun agreement"
+
+PRON-AGR(P N C) = (^ PERS) = P
+                  (^ NUM) = N
+                  (^ CASE) = C.
+
+
+
+----
+
+DEMO   GREEK   LEXICON (1.0)
+
+
+"NOUNS"
+
+diagonizma N * (^ PRED) = 'test'
+               (^ ANIM) = -
+               @NOUN-NEUT
+               { @NOUN-NOM-SG
+               | @NOUN-ACC-SG
+               | @NOUN-VOC-SG }.
+
+diakopes   N * (^ PRED) = 'vacation'
+            (^ ANIM) = -
+            @NOUN-FEM
+            { @NOUN-NOM-PL
+            | @NOUN-ACC-PL
+            | @NOUN-VOC-PL }.
+
+evdomada  N * (^ PRED) = 'week'
+              (^ ANIM) = -
+              @NOUN-FEM
+              { @NOUN-NOM-SG
+              | @NOUN-ACC-SG
+              | @NOUN-VOC-SG }.
+
+eksoteriko N * (^ PRED) = 'abroad'
+               (^ ANIM) = -
+               @NOUN-NEUT
+               { @NOUN-NOM-SG
+               | @NOUN-ACC-SG
+               | @NOUN-VOC-SG }.
+
+gata    N * (^ PRED) = 'cat'
+            (^ ANIM) = +
+            @NOUN-FEM
+            { @NOUN-NOM-SG
+            | @NOUN-ACC-SG
+            | @NOUN-VOC-SG }.
+
+gatas   N * (^ PRED) = 'cat'
+            (^ ANIM) = +
+            @NOUN-FEM
+            @NOUN-GEN-SG.
+
+gates   N * (^ PRED) = 'cat'
+            (^ ANIM) = +
+            @NOUN-FEM
+            { @NOUN-NOM-PL
+            | @NOUN-ACC-PL
+            | @NOUN-VOC-PL }.
+
+gaton   N * (^ PRED) = 'cat'
+            (^ ANIM) = +
+            @NOUN-FEM
+            @NOUN-GEN-PL.
+
+ipomoni N * (^ PRED) = 'patience'
+            (^ ANIM) = -
+            @NOUN-FEM
+            { @NOUN-NOM-SG
+            | @NOUN-ACC-SG
+            | @NOUN-VOC-SG }.
+
+istoria N * (^ PRED) = 'story'
+            (^ ANIM) = -
+            @NOUN-FEM
+            { @NOUN-NOM-SG
+            | @NOUN-ACC-SG
+            | @NOUN-VOC-SG }.
+
+jatro  N * (^ PRED) = 'doctor'
+            (^ ANIM) = +
+            @NOUN-MASC
+            { @NOUN-ACC-SG }.
+
+karekla N * (^ PRED) = 'chair'
+            (^ ANIM) = -
+            @NOUN-FEM
+            { @NOUN-NOM-SG
+            | @NOUN-ACC-SG
+            | @NOUN-VOC-SG }.
+
+kedro N * (^ PRED) = 'center'
+            (^ ANIM) = -
+            @NOUN-NEUT
+            { @NOUN-NOM-SG
+            | @NOUN-ACC-SG
+            | @NOUN-VOC-SG }.
+
+kinimatografo  N * (^ PRED) = 'cinema'
+                   (^ ANIM) = -
+                   @NOUN-MASC
+                   @NOUN-ACC-SG.
+
+kopela N * (^ PRED) = 'girl'
+            (^ ANIM) = +
+            @NOUN-FEM
+            { @NOUN-NOM-SG
+            | @NOUN-ACC-SG
+            | @NOUN-VOC-SG }.
+
+koritsi N * (^ PRED) = 'girl'
+            (^ ANIM) = +
+            @NOUN-NEUT
+            { @NOUN-NOM-SG
+            | @NOUN-ACC-SG
+            | @NOUN-VOC-SG }.
+
+koritsiu N * (^ PRED) = 'girl'
+              (^ ANIM) = +
+              @NOUN-NEUT
+              @NOUN-GEN-SG.
+
+koritsia  N * (^ PRED) = 'girl'
+              (^ ANIM) = +
+              @NOUN-NEUT
+              { @NOUN-NOM-PL
+              | @NOUN-ACC-PL
+              | @NOUN-VOC-PL }.
+
+koritsion N * (^ PRED) = 'girl'
+              (^ ANIM) = +
+              @NOUN-NEUT
+              @NOUN-GEN-PL.
+
+limani  N * (^ PRED) = 'port'
+            (^ ANIM) = -
+            @NOUN-NEUT
+            { @NOUN-NOM-SG
+            | @NOUN-ACC-SG
+            | @NOUN-VOC-SG }.
+
+psarema N * (^ PRED) = 'fishing'
+            (^ ANIM) = -
+            @NOUN-NEUT
+            { @NOUN-NOM-SG
+            | @NOUN-ACC-SG
+            | @NOUN-VOC-SG }.
+
+vivlio  N * (^ PRED) = 'book'
+            (^ ANIM) = -
+            @NOUN-NEUT
+            { @NOUN-NOM-SG
+            | @NOUN-ACC-SG
+            | @NOUN-VOC-SG }.
+
+vivliu N * (^ PRED) = 'book'
+            (^ ANIM) = -
+            @NOUN-NEUT
+            @NOUN-GEN-SG.
+
+vivlia  N * (^ PRED) = 'book'
+            (^ ANIM) = -
+            @NOUN-NEUT
+            { @NOUN-NOM-PL
+            | @NOUN-ACC-PL
+            | @NOUN-VOC-PL }.
+
+vivlion N * (^ PRED) = 'book'
+            (^ ANIM) = -
+            @NOUN-NEUT
+            @NOUN-GEN-PL.
+
+thalassa N * (^ PRED) = 'sea'
+            (^ ANIM) = -
+            @NOUN-FEM
+            { @NOUN-NOM-SG
+            | @NOUN-ACC-SG
+            | @NOUN-VOC-SG }.
+
+tilefono N * (^ PRED) = 'phone'
+             (^ ANIM) = -
+             @NOUN-NEUT
+             { @NOUN-NOM-SG
+             | @NOUN-ACC-SG
+             | @NOUN-VOC-SG }.
+
+turistes  N * (^ PRED) = 'tourist'
+               (^ ANIM) = +
+               @NOUN-MASC
+               { @NOUN-NOM-PL
+               | @NOUN-ACC-PL
+               | @NOUN-VOC-PL }.
+
+turiston  N * (^ PRED) = 'tourist'
+               (^ ANIM) = +
+               @NOUN-MASC
+               @NOUN-GEN-PL.
+
+
+"PROPER NAMES"
+
+Ellada  N * (^ PRED) = 'greece'
+           (^ ANIM) = -
+           @NOUN-FEM
+           { @NOUN-NOM-SG
+           | @NOUN-ACC-SG
+           | @NOUN-VOC-SG }.
+
+Maria  N * (^ PRED) = 'maria'
+           (^ ANIM) = +
+           @NOUN-FEM
+           { @NOUN-NOM-SG
+           | @NOUN-ACC-SG
+           | @NOUN-VOC-SG }.
+
+Nikos  N * (^ PRED) = 'nikos'
+           (^ ANIM) = +
+           @NOUN-MASC
+           @NOUN-NOM-SG.
+
+
+
+"VERBS"
+
+agapao  V * @MOOD-IND
+            @PRESENT
+            @ASPECT-IMPERF
+            @VOICE-ACT
+            @(AGR 1 sg)
+            @(TRANS love).
+
+agapai  V * @MOOD-IND
+             @PRESENT
+             @ASPECT-IMPERF
+             @VOICE-ACT
+             @(AGR 3 sg)
+             @(TRANS love).
+
+anakinosate  V * @MOOD-IND
+                 @PAST
+                 @ASPECT-PERF
+                 @VOICE-ACT
+                 @(AGR 2 pl)
+                 { @(DITRANS announce)
+                 | @(GEN-COMP announce) }.
+
+edosa V* @MOOD-IND
+         @PAST
+         @ASPECT-PERF
+         @VOICE-ACT
+         @(AGR 1 sg)
+         @(DITRANS give).
+
+ehi  V * @MOOD-IND
+         @PRESENT
+         @ASPECT-IMPERF
+         @VOICE-ACT
+         @(AGR 3 sg)
+         @(TRANS have).
+
+ekatsa V* @MOOD-IND
+          @PAST
+          @ASPECT-PERF
+          @VOICE-ACT
+          @(AGR 1 sg)
+          @(INTRANS sit).
+
+enimerosan V* @MOOD-IND
+              @PAST
+              @ASPECT-PERF
+              @VOICE-ACT
+              @(AGR 3 pl)
+              @(OBJ-COMP inform).
+
+etroyes V* @MOOD-IND
+           @PAST
+           @ASPECT-PERF
+           @VOICE-ACT
+           @(AGR 2 sg)
+           @(OPT-TRANS eat).
+
+ftanun V* @MOOD-IND
+           @PRESENT
+           @ASPECT-IMPERF
+           @VOICE-ACT
+           @(AGR 3 pl)
+           @(INTRANS arrive).
+
+grafis  V* @MOOD-IND
+           @PRESENT
+           @ASPECT-IMPERF
+           @VOICE-ACT
+           @(AGR 2 sg)
+           @(OPT-TRANS write).
+
+ida    V * @MOOD-IND
+           @PAST
+           @ASPECT-PERF
+           @VOICE-ACT
+           @(AGR 1 sg)
+           { @(TRANS see)
+           | @(COMP-ONLY see) }.
+
+ipa    V * @MOOD-IND
+            @PAST
+            @ASPECT-PERF
+            @VOICE-ACT
+            @(AGR 1 sg)
+            { @(TRANS tell)
+            | @(DITRANS tell)
+            | @(GEN-COMP tell)
+            | @(COMP-ONLY tell) }.
+
+ipan    V * @MOOD-IND
+            @PAST
+            @ASPECT-PERF
+            @VOICE-ACT
+            @(AGR 3 pl)
+            { @(TRANS tell)
+            | @(DITRANS tell)
+            | @(GEN-COMP tell)
+            | @(COMP-ONLY tell) }.
+
+ipe    V * @MOOD-IND
+            @PAST
+            @ASPECT-PERF
+            @VOICE-ACT
+            @(AGR 3 sg)
+            { @(TRANS tell)
+            | @(DITRANS tell)
+            | @(GEN-COMP tell)
+            | @(COMP-ONLY tell) }.
+
+ipenthimizo  V * @MOOD-IND
+                 @PRESENT
+                 @ASPECT-IMPERF
+                 @VOICE-ACT
+                 @(AGR 1 sg)
+                 { @(DITRANS remind)
+                 | @(GEN-COMP remind) }.
+
+kitao V* @MOOD-IND
+          @PRESENT
+          @ASPECT-IMPERF
+          @VOICE-ACT
+          @(AGR 1 sg)
+          @(OPT-TRANS look). 
+
+kitakse V* @MOOD-IND
+            @PAST
+            @ASPECT-PERF
+            @VOICE-ACT
+            @(AGR 3 sg)
+            @(OPT-TRANS look).
+
+metakomizun V* @MOOD-IND
+                @PRESENT
+                @ASPECT-IMPERF
+                @VOICE-ACT
+                @(AGR 3 pl)
+                @(GOAL move).
+
+metakomizete V* @MOOD-IND
+                @PRESENT
+                @ASPECT-IMPERF
+                @VOICE-ACT
+                @(AGR 2 pl)
+                @(GOAL move).
+
+pigame V* @MOOD-IND
+         @PAST
+         @ASPECT-PERF
+         @VOICE-ACT
+         @(AGR 1 pl)
+         @(GOAL go).
+
+pigan V* @MOOD-IND
+         @PAST
+         @ASPECT-PERF
+         @VOICE-ACT
+         @(AGR 3 pl)
+         @(GOAL go).
+
+taksidevun V* @MOOD-IND
+               @PRESENT
+               @ASPECT-IMPERF
+               @VOICE-ACT
+               @(AGR 3 pl)
+               @(INTRANS travel).
+
+zitane V* @MOOD-IND
+          @PRESENT
+          @ASPECT-IMPERF
+          @VOICE-ACT
+          @(AGR 3 pl)
+          @(TRANS travel).
+
+
+"ADJECTIVES"
+
+diskolo A* (^ PRED) = 'difficult'
+          { @(ADJ-AGR masc sg acc)
+          | @(ADJ-AGR neut sg nom)
+          | @(ADJ-AGR neut sg acc)
+          | @(ADJ-AGR neut sg voc)}.
+
+gliko  A* (^ PRED) = 'sweet'
+          { @(ADJ-AGR masc sg acc)
+          | @(ADJ-AGR neut sg nom)
+          | @(ADJ-AGR neut sg acc)
+          | @(ADJ-AGR neut sg voc)}.
+
+kseni A* (^ PRED) = 'foreign'
+          { @(ADJ-AGR masc pl nom)
+          | @(ADJ-AGR masc sg voc)}.
+
+ksenus A* (^ PRED) = 'foreign'
+           @(ADJ-AGR masc pl acc).
+
+
+ksenon A* (^ PRED) = 'foreign'
+           @(ADJ-AGR masc pl gen).
+
+omorfo A* (^ PRED) = 'beautiful'
+          { @(ADJ-AGR masc sg acc)
+          | @(ADJ-AGR neut sg nom)
+          | @(ADJ-AGR neut sg acc)
+          | @(ADJ-AGR neut sg voc)}.
+
+omorfi A* (^ PRED) = 'beautiful'
+          { @(ADJ-AGR fem sg nom)
+          | @(ADJ-AGR fem sg acc)
+          | @(ADJ-AGR fem sg voc)}.
+
+
+
+"ADVERBS"
+
+arga   ADV * (^ PRED) = 'late'.
+
+avrio   ADV * (^ PRED) = 'tomorrow'.
+
+poli   ADV * (^ PRED) = 'very'.
+
+simera ADV * (^ PRED) = 'today'.
+
+sidoma ADV * (^ PRED) = 'soon'.
+
+
+"PRONOUNS"
+
+mu  PRON * (^ PRED) = 'pro'
+            (^ PRON-TYPE) = clitic
+            @(PRON-AGR 1 sg gen).
+
+me   PRON * (^ PRED) = 'pro'
+            (^ PRON-TYPE) = clitic
+            @(PRON-AGR 1 sg acc).
+
+mas   PRON * (^ PRED) = 'pro'
+            (^ PRON-TYPE) = clitic
+            { @(PRON-AGR 1 pl gen)
+            | @(PRON-AGR 1 pl acc) }.
+
+su  PRON * (^ PRED) = 'pro'
+            (^ PRON-TYPE) = clitic
+            @(PRON-AGR 2 sg gen).
+
+se   PRON * (^ PRED) = 'pro'
+            (^ PRON-TYPE) = clitic
+            @(PRON-AGR 2 sg acc).
+
+sas   PRON * (^ PRED) = 'pro'
+            (^ PRON-TYPE) = clitic
+            { @(PRON-AGR 2 pl gen)
+            | @(PRON-AGR 2 pl acc) }.
+
+tu  PRON * (^ PRED) = 'pro'
+            (^ PRON-TYPE) = clitic
+            { (^ GEND) = masc
+            | (^ GEND) = neut }
+            @(PRON-AGR 3 sg gen).
+
+ton    PRON * (^ PRED) = 'pro'
+              (^ PRON-TYPE) = clitic
+              (^ GEND) = masc
+              @(PRON-AGR 3 sg acc).
+
+tus   PRON * (^ PRED) = 'pro'
+            (^ PRON-TYPE) = clitic
+            (^ GEND) = masc
+            { @(PRON-AGR 3 pl gen)
+            | @(PRON-AGR 3 pl acc) }.
+
+ths  PRON * (^ PRED) = 'pro'
+            (^ PRON-TYPE) = clitic
+            (^ GEND) = fem
+            @(PRON-AGR 3 sg gen).
+"this clitic is also pronounced [tis]. The reason I didn't put it with the previous one is that in greek even though they are pronounced exactly the same, they are written differently (της: sg gen / τις: pl gen & acc) - we have a lot of graphemes that represent the sound [i]. My main problem was that if I kept them under the same entry, the sentence no.7, would give me 2 solutions, one with the clitic being in sg and one in pl."
+
+tis  PRON * (^ PRED) = 'pro'
+            (^ PRON-TYPE) = clitic
+            (^ GEND) = fem
+            { @(PRON-AGR 3 pl gen)
+            | @(PRON-AGR 3 pl acc) }.
+
+tin    PRON * (^ PRED) = 'pro'
+              (^ PRON-TYPE) = clitic
+              (^ GEND) = fem
+              @(PRON-AGR 3 sg acc).
+
+to    PRON * (^ PRED) = 'pro'
+             (^ PRON-TYPE) = clitic
+             (^ GEND) = neut
+             @(PRON-AGR 3 sg acc).
+
+ta  PRON * (^ PRED) = 'pro'
+            (^ PRON-TYPE) = clitic
+            (^ GEND) = neut
+            { @(PRON-AGR 3 pl gen)
+            | @(PRON-AGR 3 pl acc) }.
+
+
+"DETERMINERS - Definite/Indefinite"
+
+
+o    D * (^ DEF) = +
+         @DET-MASC-SG-NOM.
+
+oi    D * (^ DEF) = +
+          { @DET-MASC-PL-NOM
+          | @DET-FEM-PL-NOM }.
+
+"tu    D * (^ DEF) = +
+          { @DET-MASC-SG-GEN
+          | @DET-NEUT-SG-GEN }.
+
+ton    D * (^ DEF) = +
+           { @DET-MASC-SG-ACC
+           | @DET-MASC-PL-GEN
+           | @DET-FEM-PL-GEN
+           | @DET-NEUT-PL-GEN }.
+
+tus    D * (^ DEF) = +
+            @DET-MASC-PL-ACC."
+
+i    D * (^ DEF) = +
+         @DET-FEM-SG-NOM.
+
+"tis    D * (^ DEF) = +
+           { @DET-FEM-SG-GEN
+           | @DET-FEM-PL-ACC }.
+
+tin    D * (^ DEF) = +
+           @DET-FEM-SG-ACC.
+
+to    D * (^ DEF) = +
+          { @DET-NEUT-SG-NOM
+          | @DET-NEUT-SG-ACC }.
+
+ta    D * (^ DEF) = +
+          { @DET-NEUT-PL-NOM
+          | @DET-NEUT-PL-ACC }."
+
+enas  D * (^ DEF) = -
+          @DET-MASC-SG-NOM.
+
+mja  D * (^ DEF) = -
+         { @DET-FEM-SG-NOM
+         | @DET-FEM-SG-ACC }.
+
+ena  D * (^ DEF) = -
+         { @DET-NEUT-SG-NOM
+         | @DET-NEUT-SG-ACC }.
+
+enos  D * (^ DEF) = -
+          { @DET-MASC-SG-GEN
+          | @DET-NEUT-SG-GEN }.
+
+mjas  D * (^ DEF) = -
+           @DET-FEM-SG-GEN.
+
+enan  D * (^ DEF) = -
+          @DET-MASC-SG-ACC.
+
+polli D * (^ DEF) = -
+            @DET-MASC-PL-NOM.
+
+pollon D * (^ DEF) = -
+            @DET-MASC-PL-GEN.
+
+pollus D * (^ DEF) = -
+            @DET-MASC-PL-ACC.
+
+
+"PREPOSITIONS - πρόθεση + άρθρο"
+
+"se   P * { (^ PRED) = 'to<(^OBJ)>'
+           (^ PTYPE) = sem
+         | (^ PTYPE) = nosem
+           (^ PFORM) = se }
+           (^ PP-TYPE) = plain."
+
+ston P * { (^ PRED) = 'on<(^OBJ)>'
+           (^ PTYPE) = sem
+         | (^ PRED) = 'to<(^OBJ)>'
+           (^ PTYPE) = nosem }
+           (^ OBJ GEND) =c masc
+           (^ OBJ NUM) =c sg
+           (^ OBJ CASE) =c acc.
+
+stus P * { (^ PRED) = 'on<(^OBJ)>'
+           (^ PTYPE) = sem
+         | (^ PRED) = 'to<(^OBJ)>'
+           (^ PTYPE) = nosem }
+           (^ OBJ GEND) =c masc
+           (^ OBJ NUM) =c pl
+           (^ OBJ CASE) =c acc.
+
+stin P * { (^ PRED) = 'on<(^OBJ)>'
+           (^ PTYPE) = sem
+         | (^ PRED) = 'to<(^OBJ)>'
+           (^ PTYPE) = nosem }
+           (^ OBJ GEND) =c fem
+           (^ OBJ NUM) =c sg
+           (^ OBJ CASE) =c acc.
+
+stis P * { (^ PRED) = 'on<(^OBJ)>'
+           (^ PTYPE) = sem
+         | (^ PRED) = 'to<(^OBJ)>'
+           (^ PTYPE) = nosem }
+           (^ OBJ GEND) =c fem
+           (^ OBJ NUM) =c pl
+           (^ OBJ CASE) =c acc.
+
+sto P * { (^ PRED) = 'on<(^OBJ)>'
+           (^ PTYPE) = sem
+         | (^ PRED) = 'to<(^OBJ)>'
+           (^ PTYPE) = nosem }
+           (^ OBJ GEND) =c neut
+           (^ OBJ NUM) =c sg
+           (^ OBJ CASE) =c acc.
+
+sta P * { (^ PRED) = 'on<(^OBJ)>'
+           (^ PTYPE) = sem
+         | (^ PRED) = 'to<(^OBJ)>'
+           (^ PTYPE) = nosem }
+           (^ OBJ GEND) =c neut
+           (^ OBJ NUM) =c pl
+           (^ OBJ CASE) =c acc.
+
+oti  OTI * (^ MOOD) = indicative.
+"it means 'that' and it initializes a COMP"
+
+prin	P * (^ PRED) = 'before<(^OBJ)>'
+         (^ PTYPE) = sem
+         (^ OBJ CASE) =c acc.
+
+
+"PUNCTUATION"
+
+, COMMA  * . 
+
+
+----

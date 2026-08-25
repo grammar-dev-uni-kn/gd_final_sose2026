@@ -1,0 +1,45 @@
+((1) (1 0.004 18) (6 words))
+((2) (0 0.001 12) (6 words))
+((3) (0 0.001 15) (6 words))
+((4) (1 0.001 8) (3 words))
+((5) (0 0.001 4) (3 words))
+((6) (1 0.001 17) (6 words))
+((7) (1 0.001 15) (5 words))
+((8) (0 0.001 11) (5 words))
+((9) (1 0.001 22) (7 words))
+((10) (1 0.001 22) (6 words))
+((11) (1 0.001 43) (11 words))
+((12) (1 0.001 23) (7 words))
+((13) (0 0.001 19) (7 words))
+((14) (1 0.001 23) (7 words))
+((15) (1 0.001 27) (7 words))
+((16) (1 0.001 26) (9 words))
+((17) (1 0.001 8) (3 words))
+((18) (0 0.001 2) (3 words))
+((19) (1 0.001 23) (7 words))
+
+XLE release of Sep 25, 2017 21:02.
+Grammar = /Users/joanna.pepa/Desktop/gdproject/greek.lfg.
+Grammar last modified on Aug 17, 2026 16:44.
+Host machine is Joannas-MacBook-Air.local.
+19 sentences, 0 errors, 0 mismatches
+6 sentences had 0 parses
+13 good sentences
+13 sentences had exactly one grammatical parse
+timeout = 15
+max_xle_scratch_storage = 100 MB
+prune_subtree_location = 1
+max_new_events_per_graph_when_skimming = 500
+maximum raw subtrees per sentence = 61 (#11)
+maximum event count per sentence = 3215
+average event count per graph = 62.902
+tokens = 5.8%, morph = 4.9%, multiword = 0.2%, lex = 14.8%, chart = 33.7%,
+unifier = 33.5%, completer = 2.7%, solver = 4.4%, output = 0.0%
+max_alloc_mem = 335.24 MB
+0.020 CPU secs total, 0.004 CPU secs max
+elapsed time = 0 seconds
+  range parsed failed  words   seconds  subtrees     optimal
+   1-10     12      6   6.08     0.001     19.33        1.00
+  11-20      1      0  11.00     0.001     43.00        1.00
+    all     13      6   6.46     0.001     21.15        1.00
+0.00 of the variance in seconds is explained by the number of subtrees

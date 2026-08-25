@@ -1,0 +1,77 @@
+#1 - Grammatical. D-Adj-N agree in gender/case/number: 1 solution.
+
+i Ellada ehi pollus ksenus turistes (1 0.004 18)
+
+#2 - Ungrammatical. The Adj isn't in ACC: 0 solutions.
+
+i Ellada ehi pollus kseni turistes (0 0.001 12)
+
+#3 - Ungrammatical. The OBJ should be in ACC, not in GEN: 0 solutions.
+
+i Ellada ehi pollon ksenon turiston (0 0.001 15)
+
+#4 - Grammatical. The object clitic is in ACC: 1 solution.
+
+se agapao poli (1 0.001 8)
+
+#5 - Ungrammatical. The object clitic is in GEN: 0 solutions.
+
+su agapao poli (0 0.001 4)
+
+#6 - Grammatical. OBJ + OBL-TO: 1 solution.
+
+edosa stin Maria ena vivlio simera (1 0.001 17)
+
+#7 - Grammatical. OBJ2 + OBJ and adverb fronting: 1 solution.
+
+simera ths edosa ena vivlio (1 0.001 15)
+
+#8 - Ungrammatical. Determiner in wrong gender: 0 solutions.
+
+simera ths edosa mja vivlio (0 0.001 11)
+
+#9 - Grammatical. OBJ2 + COMP: 1 solution.
+
+su ipe oti agapai mja omorfi kopela (1 0.001 22)
+
+#10 - Grammatical. COMP with 1 PP and no OBJ: 1 solution. 
+
+mu ipan oti pigan ston jatro (1 0.001 22)
+
+#11 - Grammatical. COMP with AdvP and two PPs: 1 solution.
+
+sas ipa oti prin mja evdomada pigame ston kinimatografo sto kedro (1 0.001 43)
+
+#12 - Grammatical. COMP with object clitic and a PP: 1 solution.
+
+ths ipa oti tin zitane sto tilefono (1 0.001 23)
+
+#13 - Ungrammatical. The OBJ2 is in ACC: 0 solutions.
+
+tin ipa oti tin zitane sto tilefono (0 0.001 19)
+
+#14 - Grammatical. Clauses with different subjects: 1 solution.
+
+tus enimerosan oti ftanun arga sto limani (1 0.001 23)
+
+#15 - Grammatical. Same: 1 solution.
+
+mas anakinosate oti metakomizun sto eksoteriko sidoma (1 0.001 27)
+
+#16 - Grammatical. COMP with fronted ADV and an NP with D, ADV and Adj: 1 solution.
+
+su ipenthimizo oti avrio grafis ena poli diskolo diagonizma (1 0.001 26)
+
+#17 - Grammatical. Correct order of the object clitics, first OBJ2 then OBJ: 1 solution.
+
+ths to ipa (1 0.001 8)
+
+#18 - Ungrammatical. OBJ is placed before OBJ2: 0 solutions.
+
+to ths ipa (0 0.001 2)
+
+#19 - Grammatical. COMP with overt subject: 1 solution.
+
+ths ipa oti o Nikos tin agapai (1 0.001 23)
+
+# 19 sentences, 0.020 CPU secs total, 0.004 CPU secs max (08/17/26)
