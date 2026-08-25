@@ -1,0 +1,98 @@
+# ============================================================
+# Testsuite for arabic_prodrop.lfg - Ahmad Alatrash - SoSe 2026
+# Language: Modern Standard Arabic (MSA)
+# Phenomenon: Pro-drop and Agreement
+# ============================================================
+
+
+# ==== Grammatical (VSO - Explicit Subjects vs. Pro-Drop) ====
+
+# سَمِعَ البَطَل الصَوْت .
+
+samia al-batal al-sawt.
+
+# سَمِعَ الصَوْت .
+
+samia al-sawt.
+
+# هَرَبَ الظِل .
+
+haraba al-thill.
+
+# هَرَبَ .
+
+haraba.
+
+# فَقَدَ الرَجُل الظِل .
+
+faqada al-rajul al-thill.
+
+# فَقَدَ الظِل .
+
+faqada al-thill.
+
+# ==== Grammatical (VSO - Feminine Agreement) ====
+
+# تَرَكَت الرُوح الغُرْفَة .
+
+tarakat al-rooh al-ghurfah.
+
+# تَرَكَت الغُرْفَة .
+
+tarakat al-ghurfah.
+
+# سَقَطَت الرُوح .
+
+saqatat al-rooh.
+
+# سَقَطَت .
+
+saqatat.
+
+# ==== Grammatical (SVO Alternation) ====
+
+# البَطَل سَمِعَ الصَوْت .
+
+al-batal samia al-sawt.
+
+# الرُوح تَرَكَت الغُرْفَة.
+
+al-rooh tarakat al-ghurfah.
+
+# الظِل هَرَبَ.
+
+al-thill haraba.
+
+# ==== Definiteness Contrast ====
+
+# سَمِعَ بَطَل الصَوْت.
+
+samia batal al-sawt.
+
+# سَمِعَ البَطَل صَوْت .
+
+samia al-batal sawt.
+
+# ==== Ungrammatical (Valency Violations) ====
+
+# هَرَبَ البَطَل الصَوْت.
+
+haraba al-batal al-sawt.
+
+# سَمِعَ البَطَل الصَوْت الغُرْفَة .
+
+samia al-batal al-sawt al-ghurfah.
+
+# ==== Ungrammatical (Agreement Violations) ====
+
+# سَمِعَت البَطَل الصَوْت .
+
+samiat al-batal al-sawt.
+
+# سَقَطَ الرُوح .
+
+saqata al-rooh.
+
+# تَرَكَ الرُوح الغُرْفَة .
+
+taraka al-rooh al-ghurfah.

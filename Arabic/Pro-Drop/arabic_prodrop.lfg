@@ -1,0 +1,117 @@
+ARABIC   PRODROP   CONFIG (1.0)
+  ROOTCAT   S.
+  FILES  common.templates.lfg .
+  LEXENTRIES   (ARABIC PRODROP).
+  TEMPLATES  (ARABIC PRODROP) (STANDARD COMMON).
+  RULES   (ARABIC PRODROP).
+  GOVERNABLERELATIONS    SUBJ OBJ.
+  SEMANTICFUNCTIONS    ADJUNCT.
+  NONDISTRIBUTIVES    NUM PERS.
+  EPSILON   e.
+  OPTIMALITYORDER NOGOOD.
+
+----
+
+ARABIC PRODROP RULES (1.0)
+
+"The S rule now handles both VSO and SVO orders, assigning structural case (nom/acc) based on position."
+S --> { "Canonical VSO Order"
+        V: ^=! ; 
+        (NP: (^ SUBJ) = ! (! CASE) = nom) 
+        (NP: (^ OBJ) = ! (! CASE) = acc) 
+      | "Marked SVO Order"
+        NP: (^ SUBJ) = ! (! CASE) = nom ; 
+        V: ^=! ; 
+        (NP: (^ OBJ) = ! (! CASE) = acc) 
+      }
+      (PUNC) .
+
+NP --> N: ^=! .
+
+----
+ARABIC PRODROP TEMPLATES (1.0)
+
+"== Pro-Drop Template =="
+"Either the verb provides a 'pro' subject, or it checks that a PRED was provided by an explicit noun."
+OPT-PRO = { (^ SUBJ PRED) = 'pro' 
+            (^ SUBJ PRON-TYPE) = null 
+            (^ SUBJ CASE) = nom
+          | (^ SUBJ PRED) }.
+
+"== Valency Base Templates =="
+INTRANS(P) = (^ PRED) = 'P<(^ SUBJ)>'.
+TRANS(P) = (^ PRED) = 'P<(^ SUBJ)(^ OBJ)>'.
+
+"== Noun Definiteness Templates =="
+DEF = (^ DEF) = +.
+INDEF = (^ DEF) = -.
+
+"== Verb Agreement Templates =="
+V-PAST-3SGM-INTRANS(P) =
+    @(INTRANS P)
+    (^ TENSE) = past
+    (^ SUBJ PERS) = 3
+    (^ SUBJ NUM) = sg
+    (^ SUBJ GEND) = masc
+    @OPT-PRO .
+
+V-PAST-3SGF-INTRANS(P) =
+    @(INTRANS P)
+    (^ TENSE) = past
+    (^ SUBJ PERS) = 3
+    (^ SUBJ NUM) = sg
+    (^ SUBJ GEND) = fem
+    @OPT-PRO .
+
+V-PAST-3SGM-TRANS(P) =
+    @(TRANS P)
+    (^ TENSE) = past
+    (^ SUBJ PERS) = 3
+    (^ SUBJ NUM) = sg
+    (^ SUBJ GEND) = masc
+    @OPT-PRO .
+
+V-PAST-3SGF-TRANS(P) =
+    @(TRANS P)
+    (^ TENSE) = past
+    (^ SUBJ PERS) = 3
+    (^ SUBJ NUM) = sg
+    (^ SUBJ GEND) = fem
+    @OPT-PRO .
+
+----
+ARABIC PRODROP LEXICON (1.0)
+
+"== Arabic Transliterated Lexicon =="
+
+"== Verbs =="
+samia    V * @(V-PAST-3SGM-TRANS hear) .     "سَمِعَ"
+samiat   V * @(V-PAST-3SGF-TRANS hear) .     "سَمِعَت"
+faqada   V * @(V-PAST-3SGM-TRANS lose) .     "فَقَدَ"
+faqadat  V * @(V-PAST-3SGF-TRANS lose) .     "فَقَدَت"
+taraka   V * @(V-PAST-3SGM-TRANS leave) .    "تَرَكَ"
+tarakat  V * @(V-PAST-3SGF-TRANS leave) .    "تَرَكَت"
+haraba   V * @(V-PAST-3SGM-INTRANS escape) . "هَرَبَ"
+harabat  V * @(V-PAST-3SGF-INTRANS escape) . "هَرَبَت"
+saqata   V * @(V-PAST-3SGM-INTRANS fall) .   "سَقَطَ"
+saqatat  V * @(V-PAST-3SGF-INTRANS fall) .   "سَقَطَت"
+
+"== Nouns (Definite) =="
+al-batal   N * (^ PRED) = 'hero' (^ NUM) = sg (^ GEND) = masc @DEF .    "البَطَل"
+al-rajul   N * (^ PRED) = 'man' (^ NUM) = sg (^ GEND) = masc @DEF .     "الرَجُل"
+al-thill   N * (^ PRED) = 'shadow' (^ NUM) = sg (^ GEND) = masc @DEF .  "الظِل"
+al-sawt    N * (^ PRED) = 'sound' (^ NUM) = sg (^ GEND) = masc @DEF .   "الصَوْت"
+al-rooh    N * (^ PRED) = 'spirit' (^ NUM) = sg (^ GEND) = fem @DEF .   "الرُوح"
+al-ghurfah N * (^ PRED) = 'room' (^ NUM) = sg (^ GEND) = fem @DEF .     "الغُرْفَة"
+
+"== Nouns (Indefinite) =="
+batal      N * (^ PRED) = 'hero' (^ NUM) = sg (^ GEND) = masc @INDEF .   "بَطَل"
+rajul      N * (^ PRED) = 'man' (^ NUM) = sg (^ GEND) = masc @INDEF .    "رَجُل"
+thill      N * (^ PRED) = 'shadow' (^ NUM) = sg (^ GEND) = masc @INDEF . "ظِل"
+sawt       N * (^ PRED) = 'sound' (^ NUM) = sg (^ GEND) = masc @INDEF .  "صَوْت"
+rooh       N * (^ PRED) = 'spirit' (^ NUM) = sg (^ GEND) = fem @INDEF .  "رُوح"
+ghurfah    N * (^ PRED) = 'room' (^ NUM) = sg (^ GEND) = fem @INDEF .    "غُرْفَة"
+
+"== Punctuation =="
+.    PUNC * .
+----
