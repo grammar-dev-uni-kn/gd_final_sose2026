@@ -1,0 +1,120 @@
+#Sentences that should work
+
+
+#1
+
+aval ezhuthiya kathu vannu
+
+#she write-RELCL letter	come-PST
+
+#2
+
+aval innale ezhuthiya kathu vannu
+
+#she yesterday write-RELCL letter come-past
+
+#3
+
+innale aval ezhuthiya kathu vannu
+
+#yesterday she write-RELCL letter come-PST
+
+#4
+
+innale kuracha naaya
+
+#yesterday bark-RELCL dog
+
+#5
+
+paadiya kutti chirichu
+
+#sing-RELCL child laugh-PST
+
+#6
+
+paadiya kuttikal chirichu
+
+#sing-RELCL child-Pl laugh-PST
+
+
+#7
+
+njan vangiya pusthakam nallathaan
+
+#I buy-RELCL book good
+
+#8
+
+adutha pareekshakku varunna chodhyangal
+
+#next exam-DAT come-RELCL questionl-PL
+
+#9
+
+innale vanna aal
+
+#yesterday come-RELCL person
+
+#10
+
+Swathi Punnyakk kodutha pusthakam
+
+#Swathi Punnya-DAT give-RELCL book
+
+#11
+
+enikk kittiya aa rand velli paathrangal
+
+#I-DAT get-RELCL DEM two silver vessel-PL
+
+#12
+
+patti poochaye kadichu
+
+#dog   cat-ACC  bite-PST
+
+#12
+
+chaakine mel kedakkunna poocha
+
+#sack-ACC on lie-RLCL	cat
+
+
+#Sentences that should not work
+
+#1 missing head noun
+
+njan ezhuthiya
+
+#I write-PART
+
+
+#2 relative participle after the noun
+
+pusthakam njan vangiya
+
+#book     I    buy-PART
+
+#3 relative clause with no noun
+
+kanda
+
+#see-PART
+
+#4 incorrect ordering of adjective and oblique NP.
+
+pareekshakku adutha varunna chodhyangal
+
+#exam-DAT    next    come-PART question-PL
+
+#5 attributive noun must precede the head noun.
+
+aa rand paathrangal velli
+
+#DEM two vessel-PL silver
+
+#6 object without case marking
+
+patti poocha kadichu
+

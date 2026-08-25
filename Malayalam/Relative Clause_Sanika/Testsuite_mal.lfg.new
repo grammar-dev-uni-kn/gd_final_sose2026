@@ -1,0 +1,121 @@
+#Sentences that should work
+
+
+#1
+
+aval ezhuthiya kathu vannu (2 0.012 30)
+
+#she write-RELCL letter	come-PST
+
+#2
+
+aval innale ezhuthiya kathu vannu (2 0.003 37)
+
+#she yesterday write-RELCL letter come-past
+
+#3
+
+innale aval ezhuthiya kathu vannu (2 0.002 23)
+
+#yesterday she write-RELCL letter come-PST
+
+#4
+
+innale kuracha naaya (2 0.001 12)
+
+#yesterday bark-RELCL dog
+
+#5
+
+paadiya kutti chirichu (2 0.001 13)
+
+#sing-RELCL child laugh-PST
+
+#6
+
+paadiya kuttikal chirichu (2 0.001 13)
+
+#sing-RELCL child-Pl laugh-PST
+
+
+#7
+
+njan vangiya pusthakam nallathaan (1 0.001 19)
+
+#I buy-RELCL book good
+
+#8
+
+adutha pareekshakku varunna chodhyangal (2 0.002 19)
+
+#next exam-DAT come-RELCL questionl-PL
+
+#9
+
+innale vanna aal (2 0.001 12)
+
+#yesterday come-RELCL person
+
+#10
+
+Swathi Punnyakk kodutha pusthakam (4 0.002 30)
+
+#Swathi Punnya-DAT give-RELCL book
+
+#11
+
+enikk kittiya aa rand velli paathrangal (1 0.002 21)
+
+#I-DAT get-RELCL DEM two silver vessel-PL
+
+#12
+
+patti poochaye kadichu (4 0.001 22)
+
+#dog   cat-ACC  bite-PST
+
+#13
+
+chaakine mel kedakkunna poocha (2 0.001 15)
+
+#sack-ACC on lie-RLCL	cat
+
+
+#Sentences that should not work
+
+#1 missing head noun
+
+njan ezhuthiya (0 0.001 0)
+
+#I write-PART
+
+
+#2 relative participle after the noun
+
+pusthakam njan vangiya (0 0.001 0)
+
+#book     I    buy-PART
+
+#3 relative clause with no noun
+
+kanda (0 0.001 0)
+
+#see-PART
+
+#4 incorrect ordering of adjective and oblique NP.
+
+pareekshakku adutha varunna chodhyangal (0 0.001 0)
+
+#exam-DAT    next    come-PART question-PL
+
+#5 attributive noun must precede the head noun.
+
+aa rand paathrangal velli (0 0.001 0)
+
+#DEM two vessel-PL silver
+
+#6 object without case marking
+
+patti poocha kadichu (0 0.001 24)
+
+# 19 sentences, 0.037 CPU secs total, 0.012 CPU secs max (08/20/26)
