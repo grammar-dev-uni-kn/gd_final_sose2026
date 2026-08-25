@@ -1,0 +1,349 @@
+DEMO   ENGLISH   CONFIG (1.0)
+  ROOTCAT   S.
+  FILES common.templates.lfg .
+  LEXENTRIES   (DEMO ENGLISH).
+  TEMPLATES (DEMO ENGLISH) (STANDARD COMMON). 
+  RULES   (DEMO ENGLISH).
+  GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
+  NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
+  EPSILON   e.
+  OPTIMALITYORDER NOGOOD.
+
+----
+
+DEMO   ENGLISH   RULES (1.0)
+
+    ROOT --> {S
+             |Sint}.
+
+
+    Sint --> e: (^ SUBJ PRED) = 'pro'
+                (^ SUBJ PERS) = 1
+                (^ NUM) = pl; 
+             VP: (^ TNS-ASP) = pres;
+             INTER.
+
+
+    S --> NP: (^ SUBJ) = !
+              (! CASE) = nom;
+          VP: ^=!;
+          (CONJ
+           VP: ^=!).
+
+
+    S2 --> {e: (^ SUBJ PRED) = 'pro'
+           |NP: (^ SUBJ) = !
+                (! CASE) = nom}
+           VP2.
+
+
+    VP --> (NP: (^ OBJ) = !
+                (^ PRON-TYPE) = pers
+      		(^ NTYPE) = pron
+                (! CASE) = acc)
+	   V: ^=!; 
+          ({NP: (^ OBJ) = !		"direct object"
+                (! CASE) = acc
+          | AP: (^ PREDICATE) = !	"predicate"
+                (! CASE) = nom})
+          (PP*: ! $ (^ ADJUNCT))
+          (CP: (^ COMP) = !).
+
+
+    VP2 -->  V: ^=!;
+             {(NP: (^ OBJ) = !
+                   (! CASE) = acc)
+             |(AP: (^ PREDICATE) = !
+                   (! CASE) = nom)}
+             (CP2: (^ COMP) = !).
+
+
+    CP --> C
+           S2.
+
+    
+    CP2 --> C
+            S.
+
+
+    AP --> A.
+
+
+    PP --> P
+           NP.
+
+
+    NP --> {(D)  "can leave out ^=!"
+             N
+            (A)
+            (PP)
+           | PRON}. 
+
+----
+
+DEMO ENGLISH TEMPLATES (1.0)
+
+"nouns"
+
+"first name feminine"
+FNF = (^ NAME-TYPE) = fist_name
+      (^ HUMAN) = +
+      (^ GEND) = fem.
+
+"fist name masculine"
+FNM = (^ NAME-TYPE) = fist_name
+      (^ HUMAN) = +
+      (^ GEND) = masc.
+
+"proper noun"
+PN(P) = (^ PRED) ='P' 
+        (^ NUM) = sg
+        (^ PERS) = 3
+        (^ NSYN) = proper
+      ~[(^ DEF)].
+
+
+"prepositions"
+
+"template for most prepositions"
+PREP(P) = { (^ PRED) = 'P<(^OBJ)>' 
+            (^ PTYPE) = sem
+          | (^ PTYPE) = nosem
+            (^ PFORM) = P}.
+
+
+"verbs"
+
+INTRANS(P) = {(^ PRED) = 'P'
+	     |(^ PRED) = 'P<(^ SUBJ)>'}.
+
+TRANS(P) = {(^ PRED) = 'P'
+	   |(^ PRED) = 'P<(^ SUBJ)(^ OBJ)>'}. 
+
+OPT-TRANS(P) = { @(INTRANS P) | @(TRANS P) }.
+
+VERB(N P T M) = (^ NUM) = N
+                (^ PERS) = P
+                (^ TNS-ASP) = T
+                (^ MOOD) = M.
+
+
+"coordination"
+
+NP-CONJUNCT = "provides person resolution features for nominal
+                 coordination" 
+  
+      { "if either conjunct is 1st person; the whole NP is"
+        "COM{EX TEMPLATES NP: the boys and me}"
+        (! PERS)=c 1
+        (^ PERS)=1
+       |"if a conjunct is 2nd person and the NP is not
+        already 1st person, make it 2nd person"
+        (! PERS)=c 2
+        { (^ PERS)=c 1 "one conjunct was 1st person"
+                       "COM{EX TEMPLATES NP: you and I}"
+         |(^ PERS)=2 } "else assign 2nd person"
+                       "COM{EX TEMPLATES NP: you and the boys}"
+       |"otherwise, the NP is 3rd person"
+        "COM{EX TEMPLATES NP: the boys and her}"
+        (^ PERS)=3}.
+
+"provide value for ^ COORD-FORM"
+COORD-FORM(_val) = @(COORD-FORM_desig ^ _val).
+
+"provide value for path's COORD-FORM"
+COORD-FORM_desig(_path _val) = (_path COORD-FORM) = _val.
+
+----
+
+DEMO ENGLISH LEXICON (1.0)
+
+
+"adjectives"
+
+estúpido	A * (^ PRED) = 'estúpido'
+		    (^ GEND) = masc
+                    (^ NUM) = sg.
+
+feio		A * (^ PRED) = 'feio'
+		    (^ GEND) = masc
+                    (^ NUM) = sg.
+
+bonito		A * (^ PRED) = 'bonito'
+		    (^ GEND) = masc
+                    (^ NUM) = sg.
+
+simpaticas	A * (^ PRED) = 'simpaticas'
+		    (^ GEND) = fem
+                    (^ NUM) = pl.
+
+
+"complementizers"
+
+que	  C * (^ COMP-FORM) = que.
+
+
+"determiners"
+
+a	D *  (^ DEF) = +
+             (^ GEND) = fem
+             (^ NUM) = sg.
+
+
+"prepositions"
+
+com	P * @(PREP com).
+
+para	P * @(PREP para).
+
+no	P * @(PREP no).			"agglutinated form (prep em + art o)"
+
+"proper nouns"
+
+Ana	 N * @(PN Ana) @FNF.
+
+João	 N * @(PN João) @FNM.
+
+Mario	 N * @(PN Mario) @FNM.
+
+Paulo	 N * @(PN Paulo) @FNM.
+
+
+"pronouns"
+
+eu	PRON * (^ PRED) = 'eu'
+               (^ PERS) = 1
+               (^ NUM) = sg
+               (^ GEND) = -
+	       (^ CASE) =  nom
+               (^ PRON-TYPE) = pers.
+
+
+o	PRON * (^ PRED) = 'o'
+		 (^ NUM) = sg
+		 (^ PERS) = 3
+		 (^ CASE) = acc
+		 (^ PRON-TYPE) = pers
+      		 (^ NTYPE) = pron.
+
+
+ele	PRON * (^ PRED) = 'ele'
+               (^ PERS) = 3
+               (^ NUM) = sg 
+               (^ GEND) = masc
+	       (^ CASE) =  nom
+               (^ PRON-TYPE) = pers.
+
+elas	PRON * (^ PRED) = 'elas'
+               (^ PERS) = 3
+               (^ NUM) = pl 
+               (^ GEND) = fem
+	       (^ CASE) =  nom
+               (^ PRON-TYPE) = pers.
+
+
+ninguém		PRON *   (^ PRED) = 'ninguém'
+		 	 (^ NUM) = sg
+		  	 (^ PERS) = 3
+		 	 (^ PRON-TYPE) = indef
+      		 	 (^ NTYPE) = pron.
+
+
+"verbs"
+
+acha		V *  (^ PRED) = 'dizer<(^ SUBJ)(^ COMP)>'
+                     (^ PERS) = 3
+                     (^ NUM) = sg
+                     (^ TNS-ASP) = pres
+                     (^ MOOD) = ind.
+
+é		V *  (^ PRED) = 'ser<(^ SUBJ)(^ PREDICATE)>'
+                     (^ PERS) = 3
+                     (^ NUM) = sg
+               	     (^ TNS-ASP) = pres
+                     (^ MOOD) = ind.
+
+são		V *  (^ PRED) = 'ser<(^ SUBJ)(^ PREDICATE)>'
+                     (^ PERS) = 3
+                     (^ NUM) = pl
+               	     (^ TNS-ASP) = pres
+                     (^ MOOD) = ind.
+
+falei		V * {(^ PRED) = 'falar'
+	  	    |(^ PRED) = 'falar<(^ SUBJ)>'}
+	    	     (^ NUM) = sg
+	             (^ PERS) = 1
+	             (^ TNS-ASP) = past
+                     (^ MOOD) = ind.
+
+comprei		V *  (^ PRED) = 'comprar<(^ SUBJ)(^ OBJ)>'
+                     (^ PERS) = 1
+                     (^ NUM) = sg
+               	     (^ TNS-ASP) = past
+                     (^ MOOD) = ind.
+
+
+comprou		V *  (^ PRED) = 'comprar<(^ SUBJ)(^ OBJ)>'
+                     (^ PERS) = 3
+                     (^ NUM) = sg
+               	     (^ TNS-ASP) = past
+                     (^ MOOD) = ind.
+
+levou		V * (^ PRED) = 'levar<(^ SUBJ)(^ OBJ)>'
+	    	     (^ NUM) = sg
+	   	     (^ PERS) = 3
+	    	     (^ TNS-ASP) = past
+            	     (^ MOOD) = ind.
+
+disse	V *  (^ PRED) = 'dizer<(^ SUBJ)(^ COMP)>'
+             (^ PERS) = 3
+             (^ NUM) = sg
+             (^ TNS-ASP) = past
+             (^ MOOD) = ind.
+
+vai		V *  (^ PRED) = 'ir<(^ SUBJ)(^ OBJ)>'
+                     (^ PERS) = 3
+                     (^ NUM) = sg
+                     (^ TNS-ASP) = pres
+                     (^ MOOD) = ind.
+
+vamos		V *  (^ PRED) = 'ir<(^ SUBJ)>'
+                     (^ PERS) = 1
+                     (^ NUM) = pl
+                     (^ TNS-ASP) = pres
+                     (^ MOOD) = ind.
+
+"nouns"
+
+casa	N * (^ PRED) = 'casa'
+            (^ GEND) = fem
+            (^ NUM) = sg
+            (^ ANIM) = -.
+
+mãe	N * (^ PRED) = 'mãe'
+            (^ GEND) = fem
+            (^ NUM) = sg
+            (^ ANIM) = +.
+
+mercado	N * (^ PRED) = 'mercado'
+            (^ GEND) = masc
+            (^ NUM) = sg
+            (^ ANIM) = -.
+
+pão	N * (^ PRED) = 'pão'
+            (^ GEND) = masc
+            (^ NUM) = sg
+            (^ ANIM) = -.
+
+
+"coordination"
+
+e	CONJ * (^ COORD-FORM) = e.
+
+
+"punctuation"
+
+? INTER * .
+
+----
