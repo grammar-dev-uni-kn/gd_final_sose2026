@@ -1,0 +1,24 @@
+PARGRAM THAI FEATURES (1.0)
+
+TAME: -> << [TENSE ASPECT MOOD MODALITY].
+
+TENSE: -> << [TensePast TenseAnt].
+ASPECT: -> << [AspProg AspProsp AspReal AspPerf AspComplAbil].
+
+MOOD: -> << [MoodType MoodSfp MoodHedge].
+MODALITY: -> << [ModType ModAletDegree].
+
+MoodType: -> $ {eval irr}.
+TensePast: -> $ {past}.
+TenseAnt: -> $ {ant}.
+ModType: -> $ {epi alet obl}.
+ModAletDegree: -> $ {weak strong}.
+AspProg: -> $ {prog}.
+AspProsp: -> $ {prosp}.
+AspReal: -> $ {real}.
+AspComplAbil: -> $ {compl abil}.
+AspPerf: -> $ {perf}.
+MoodSfp: -> $ {sfp}.
+MoodHedge: -> $ {hedge}.
+
+----

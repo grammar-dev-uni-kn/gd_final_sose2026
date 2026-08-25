@@ -1,0 +1,32 @@
+set-character-encoding stdio utf-8
+
+set xle_tok_th [file join [file dirname [info script]] utils th-tok.py]
+
+# python3 is the macOS/Linux convention; Windows Python installs commonly
+# expose only "python" (or neither, if the launcher is "py"), so probe in
+# that order rather than hard-coding one name.
+set xle_python ""
+foreach candidate {python3 python} {
+    if {[auto_execok $candidate] ne ""} {
+        set xle_python $candidate
+        break
+    }
+}
+if {$xle_python eq ""} {
+    error "xlerc: no Python interpreter (python3 or python) found on PATH"
+}
+
+rename parse _xle_parse
+
+proc parse {sentence} {
+    global xle_tok_th xle_python
+    if {[regexp {[ก-๿]} $sentence]} {
+        set tokens [exec $xle_python $xle_tok_th << $sentence]
+        puts "\[th\] $tokens"
+        _xle_parse $tokens
+    } else {
+        _xle_parse $sentence
+    }
+}
+
+create-parser thai.lfg

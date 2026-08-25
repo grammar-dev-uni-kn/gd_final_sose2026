@@ -1,0 +1,87 @@
+PARGRAM THAI LEXICON (1.0)
+
+"Nouns"
+
+ข้าว	N	*	@(PRED ข้าว-rice).
+
+แม่ 	N	*	@(PRED แม่-mother).
+
+"Pronouns"
+
+เขา	Pron 	*	@(PRED pro)
+				@NSG.
+
+"Main Verbs"
+
+ทำ	SVC	* 	{@(SUBJ-OBJ_core ทำ-do)|@(SUBJ_core ทำ-do)};
+	V	*	{@(SUBJ-OBJ_core ทำ-do)|@(SUBJ_core ทำ-do)}.
+
+กิน	SVC	*	{@(SUBJ-OBJ_core กิน-eat)|@(SUBJ_core กิน-eat)};
+	V	*	{@(SUBJ-OBJ_core กิน-eat)|@(SUBJ_core กิน-eat)}.
+
+เดิน 	SVC	* 	@(SUBJ_core เดิน-walk);
+ 	V 	* 	@(SUBJ_core เดิน-walk).
+
+ออก 	SVC	* 	@(SUBJ_core ออก-exit);
+ 	V 	* 	@(SUBJ_core ออก-exit).
+
+ไป 	SVC 	* 	@(SUBJ_core ไป-go);
+ 	V 	* 	@(SUBJ_core ไป-go).
+
+นั่ง 	SVC 	* 	@(SUBJ_core นั่ง-sit);
+ 	V 	* 	@(SUBJ_core นั่ง-sit).
+
+บอก Vctrl	*	@(SUBJ-OBJ-XCOMP_core บอก-tell)
+  			@OBJ-SUBJ-CONTROL.
+
+
+"Auxiliaries"
+
+คง	Aux[Mood, eval]	*	@(SUBJ-XCOMP_core คง-may)
+  						@SUBJ-SUBJ-CONTROL
+  						@(AUX MOOD MoodType eval).
+
+อาจ	Aux[Mod, epi] 		* 	@(SUBJ-XCOMP_core อาจ-might)
+  						@SUBJ-SUBJ-CONTROL
+  						@(AUX MODALITY ModType epi).
+
+เคย	Aux[Tense, past] 	* 	@(AUX TENSE TensePast past);
+ 	Aux[Tense, ant] 	* 	@(AUX TENSE TenseAnt ant).
+
+จะ 	Aux[Mood, irr] 	* 	@(SUBJ-XCOMP_core จะ-will)
+  						@SUBJ-SUBJ-CONTROL
+  						@(AUX MOOD MoodType irr);
+ 	Aux[Asp, prosp] 	* 	@(AUX ASPECT AspProsp prosp).
+
+
+ควร	Aux[Mod, alet, weak]	* 	@(SUBJ-XCOMP_core ควร-should)
+ 							@SUBJ-SUBJ-CONTROL
+  							@(AUX MODALITY ModType alet)
+  							@(AUX MODALITY ModAletDegree weak).
+
+ต้อง	Aux[Mod, alet, strong] 	* 	@(SUBJ-XCOMP_core ต้อง-must)
+  							@SUBJ-SUBJ-CONTROL
+  							@(AUX MODALITY ModType alet)
+  							@(AUX MODALITY ModAletDegree strong);
+ 	Aux[Mod, obl] 			* 	@(SUBJ-XCOMP_core ต้อง-must)
+  							@SUBJ-SUBJ-CONTROL
+  							@(AUX MODALITY ModType obl).
+
+กำลัง	Aux[Asp, prog] 	* 	@(AUX ASPECT AspProg prog).
+
+
+ได้ 	Aux[Asp, real] 	* 	@(AUX ASPECT AspReal real);
+ 	Aux[Asp, compl] 	* 	@(AUX ASPECT AspComplAbil compl);
+ 	Aux[Asp, abil] 	* 	@(AUX ASPECT AspComplAbil abil).
+
+แล้ว 	Aux[Asp, perf] 	* 	@(AUX ASPECT AspPerf perf).
+
+ล่ะ 	Aux[Mood, sfp] 	* 	@(AUX MOOD MoodSfp sfp).
+
+มั้ง 	Aux[Mood, hedge] 	* 	@(AUX MOOD MoodHedge hedge).
+
+"Functors"
+
+ให้ 	Comp * .
+
+----
