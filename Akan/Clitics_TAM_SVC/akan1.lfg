@@ -1,0 +1,336 @@
+DEMO   AKAN   CONFIG (1.0)
+  ROOTCAT   S.                            
+  FILES     .
+  LEXENTRIES (DEMO AKAN).
+  RULES     (DEMO AKAN).
+  TEMPLATES (DEMO AKAN).
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC.      
+  NONDISTRIBUTIVES    NUM PERS.             
+  OPTIMALITYORDER NOGOOD.                   
+  GENOPTIMALITYORDER NOGOOD.
+  CHARACTERENCODING utf-8.                  "for ɔ, ɛ"
+
+----
+
+DEMO   AKAN   RULES (1.0)
+
+"Root clause; subj NP optional since subj is also marked on V (pro-drop); NUM/PERS copied up from subj; trailing Postp = clause-level locative adjunct; optional final punctuation."
+S --> (NP: (^ SUBJ) = ! 
+            (^ NUM) = (! NUM)
+            (^ PERS) = (! PERS))
+      VP: ^=!;
+      (Postp: (^ PCASE) = loc)
+      (PERIOD)                              "for future declarative test items"
+      (EXCLAMATION).                        "for imperative test items"
+
+
+"OBJ2 before OBJ = Akan V-IO-DO order; XCOMP disjunct = control verbs like 'gyae' (stop); final VP disjunct = serial verb construction (SVC), sharing SUBJ/OBJ and ASPECT-or-TENSE, tagged CONTEXT=serial for TAM morphemes to check."
+ VP --> V: ^=!;
+       (NP: (^ OBJ2) = !)
+       (NP: (^ OBJ) = !)
+       (PP: (^ OBL-LOC) = !)
+       (NP: ! $ (^ ADJUNCT)              
+            (! PCASE) =c loc)
+       (V: (^ XCOMP) = !
+           (^ XCOMP SUBJ) = (^ SUBJ)
+           (^ XCOMP OBJ) = (^ OBJ))
+     (VP: ! $ (^ ADJUNCT)
+          (! SUBJ) = (^ SUBJ)
+        (! OBJ) = (^ OBJ)
+        { (! ASPECT) (! ASPECT) = (^ ASPECT)
+| (! TENSE)  (! TENSE)  = (^ TENSE) }
+         (! CONTEXT) = serial)
+         (NP: (! OBJ) = !).
+
+
+"Pref = subj-agreement clitic (licenses pro-drop); tam = preverbal TAM prefix; vsfx = past suffix."
+V --> (Neg: (^ NEG) = +)
+      (Pref: ^=!)
+      (tam: ^=!)
+      Vstem: ^=!;
+      (Hyph: ^=!)
+      (vsfx: ^=!).
+
+"Determiners are postposed in Akan (N Det order). Stays overt-only -- this category is shared by OBJ/OBJ2/PP/ADJUNCT positions in VP/PP. Akan does allow object drop in some contexts, but this grammar doesn't model object recoverability, so no null pro-drop alternative is given here."
+NP --> N: ^=!;
+       (Det: ^=!)
+       (Postp: (^ PCASE) = loc).
+
+"Akan is postpositional, NP precedes the adposition head."
+PP --> NP: (^ OBJ) = ! ;
+       Postp: ^=!.
+----
+
+DEMO   AKAN   TEMPLATES (1.0)
+
+"Tense Aspect and Mood Templates"
+  TENSE(T) = (^ TENSE) = T.
+  ASPECT(A) = (^ ASPECT) = A.
+  MOOD(M) = (^ MOOD) = M.
+  
+"Baseline Mood shortcuts"
+  INDICATIVE = @(MOOD INDICATIVE).
+  
+"Imperative Mood: bare verb, addressee subject, no other subject marking"
+IMPERATIVE = (^ MOOD) = imperative
+             (^ SUBJ PRED) = 'pro'
+             (^ SUBJ PERS) = 2
+             (^ SUBJ ANIM) = +.
+
+AKAN-INTRANS(P) = (^ PRED) = 'P<(^ SUBJ)>'.
+
+AKAN-TRANS(P)   = (^ PRED) = 'P<(^ SUBJ)(^ OBJ)>'.
+
+AKAN-DITRANS(P) = (^ PRED) = 'P<(^ SUBJ)(^ OBJ)(^ OBJ2)>'.
+
+"Tense and Aspect"
+STATIVE     = (^ ASPECT) = stative.
+
+PROG        = (^ ASPECT) = progressive.
+
+FUTURE      = (^ ASPECT) = future.
+
+PERFECT     = (^ ASPECT) = perfect.
+
+PAST        = (^ TENSE) = past.
+
+
+ANIMSUBJ = (^ SUBJ ANIM) =c +.       "Selectional restriction: SUBJ must be animate,
+                                       else f-structure is inconsistent and the
+                                       parse fails (used on agentive verbs)."
+
+"ATR (Advanced Tongue Root) vowel harmony feature - Vstem entries would carry @(ATR plus) or @(ATR minus)
+ depending on their vowel class, and the -ee/-ɛɛ vsfx entries could replace their separate lexical listing with a single shared PAST quation plus an (^ ATR) =c plus / =c minus check, the same way CONTEXT =c serial is used to select behavior in the TAM entries."
+ATR(V) = (^ ATR) = V.
+
+DEFDET = (^ SPEC DET) =c '+'.        "checks NP is already marked definite"
+ 
+LOC-P(P) = (^ PRED) = 'P<(^ OBJ)>'.  "one-place PRED for postpositions"
+----
+
+DEMO   AKAN   LEXICON (1.0)
+
+Kofi    N * (^ PRED) = 'Kofi'
+            (^ PERS) = 3
+            (^ NUM)  = sg
+            (^ ANIM) = +.
+
+akokɔ N * (^ PRED) = 'chicken'
+            (^ PERS) = 3
+            (^ NUM)  = sg
+            (^ ANIM) = +.
+
+anoma N * (^ PRED) = 'bird'
+            (^ PERS) = 3
+            (^ NUM)  = sg
+            (^ ANIM) = +.
+
+
+dua    N * (^ PRED) = 'tree'
+            (^ PERS) = 3
+            (^ NUM)  = sg
+            (^ ANIM) = -.
+
+dan    N * (^ PRED) = 'building'
+            (^ PERS) = 3
+            (^ NUM)  = sg
+            (^ ANIM) = -.
+
+
+nwoma   N * (^ PRED) = 'book'
+            (^ PERS) = 3
+            (^ NUM)  = sg
+            (^ ANIM) = -.
+
+
+sika    N * (^ PRED) = 'money'
+            (^ PERS) = 3
+            (^ NUM)  = sg
+            (^ ANIM) = -.
+
+su    N * (^ PRED) = 'cry'
+            (^ ANIM) = -.
+
+
+"Pronouns - me/wo/mo double as N (free pronoun) and Pref (clitic), no also = Det"
+
+me     N * (^ PRED) = 'pro'
+            (^ PERS) = 1
+            (^ NUM)  = sg
+            (^ ANIM) = +.
+
+wo      N * (^ PRED) = 'pro'
+            (^ PERS) = 2
+            (^ NUM)  = sg
+            (^ ANIM) = +.
+
+no      N * (^ PRED) = 'pro'
+              (^ PERS) = 3
+              (^ NUM)  = sg
+              (^ ANIM) = + ;
+        Det * (^ SPEC DET) = '+'
+              (^ SPEC TYPE) = DEF.
+
+bi    Det * (^ SPEC DET) = '-'
+            (^ SPEC TYPE) = INDEF.
+
+yɛn     N * (^ PRED) = 'pro'
+            (^ PERS) = 1
+            (^ NUM)  = pl
+            (^ ANIM) = +.
+
+mo      N * (^ PRED) = 'pro'
+            (^ PERS) = 2
+            (^ NUM)  = pl
+            (^ ANIM) = +.
+
+
+"Subject Clitics - bound agreement prefixes; ɔ-/ɔ animate 3sg, ɛ-/ɛ inanimate 3sg"
+
+me-      Pref * (^ SUBJ PRED) = 'pro'
+               (^ SUBJ PERS) = 1
+               (^ SUBJ NUM)  = sg
+               (^ SUBJ ANIM) = +.
+
+wo-     Pref * (^ SUBJ PRED) = 'pro'
+               (^ SUBJ PERS) = 2
+               (^ SUBJ NUM)  = sg
+               (^ SUBJ ANIM) = +.     
+
+ɔ-      Pref * (^ SUBJ PRED) = 'pro'            "animate "
+               (^ SUBJ PERS) = 3
+               (^ SUBJ NUM)  = sg
+               (^ SUBJ ANIM) = +.
+ɔ       Pref * (^ SUBJ PRED) = 'pro'
+               (^ SUBJ PERS) = 3
+               (^ SUBJ NUM)  = sg
+               (^ SUBJ ANIM) = +.
+
+ɛ-      Pref * (^ SUBJ PRED) = 'pro'            "inanimate"
+               (^ SUBJ PERS) = 3
+               (^ SUBJ NUM)  = sg
+               (^ SUBJ ANIM) = -.
+ɛ       Pref * (^ SUBJ PRED) = 'pro'
+               (^ SUBJ PERS) = 3
+               (^ SUBJ NUM)  = sg
+               (^ SUBJ ANIM) = -.
+
+yɛ-     Pref * (^ SUBJ PRED) = 'pro'
+               (^ SUBJ PERS) = 1
+               (^ SUBJ NUM)  = pl
+               (^ SUBJ ANIM) = +.
+
+mo-     Pref * (^ SUBJ PRED) = 'pro'
+               (^ SUBJ PERS) = 2
+               (^ SUBJ NUM)  = pl
+               (^ SUBJ ANIM) = +.  
+
+               
+"--- New Overt TAM Prefixes (Lowercase Category Match) ---"
+
+bɛ- tam * @FUTURE
+            @INDICATIVE.
+
+re- tam * @(TENSE PRESENT)
+            @PROG
+            @INDICATIVE.
+
+"a-: perfect outside a serial chain; inside a serial chain, just checks ASPECT already matches progressive or future (doesn't add new TAM)."
+a-  tam * { @(TENSE PRESENT)
+             @PERFECT
+             @INDICATIVE
+             (^ CONTEXT) ~=c serial
+           |
+             (^ CONTEXT) =c serial
+             { (^ ASPECT) =c progressive
+             | (^ ASPECT) =c future }} .
+
+ " Past Tense Verbal Suffixes - ee/-ɛɛ: past suffix, chosen by ATR vowel harmony, behaves differently
+  inside vs. outside a serial chain ."
+ -ee  vsfx * { @PAST
+              @INDICATIVE
+              (^ PAST-MARKER) = +
+              (^ CONTEXT) =c serial
+            |
+              (^ CONTEXT) =c serial
+              @INDICATIVE
+              (^ PAST-MARKER) = +
+             (^ TENSE) = past }.
+ 
+ -ɛɛ vsfx * { @PAST
+            @INDICATIVE
+           (^ PAST-MARKER) = +
+           (^ CONTEXT) ~=c serial
+         |
+             (^ CONTEXT) =c serial
+           @INDICATIVE
+             (^ PAST-MARKER) = +
+          (^ TENSE) = past }.
+              
+-       Hyph * .   "Null entry, carries no f-structure content"
+
+
+"VERB STEMS"
+
+kɔ      Vstem * { @(AKAN-INTRANS go)
+                | (^ PRED) = 'go<(^ SUBJ)(^ OBL-LOC)>' }
+                { @INDICATIVE | @IMPERATIVE}.
+
+da    Vstem * @(AKAN-INTRANS sleep) 
+              { @INDICATIVE | @IMPERATIVE }.
+
+hiri  Vstem * @(AKAN-INTRANS jump) 
+              { @INDICATIVE | @IMPERATIVE }.
+
+sɔre  Vstem * @(AKAN-INTRANS get-up) 
+              { @INDICATIVE | @IMPERATIVE }.
+
+pɛ    Vstem * @(AKAN-TRANS like) 
+              { @INDICATIVE | @IMPERATIVE }.
+
+ma    Vstem * @(AKAN-DITRANS give) 
+              { @INDICATIVE | @IMPERATIVE }.
+
+kum   Vstem * @(AKAN-TRANS kill) 
+              @ANIMSUBJ                    "requires animate subject"
+              { @INDICATIVE | @IMPERATIVE }.
+
+kan   Vstem * @(AKAN-TRANS count) 
+              @ANIMSUBJ
+              { @INDICATIVE | @IMPERATIVE }.
+
+noa   Vstem * { @(AKAN-TRANS cook) 
+              | @(AKAN-INTRANS cook) }        "ambitransitive"
+              @ANIMSUBJ
+              { @INDICATIVE | @IMPERATIVE }.
+
+gyae    Vstem * { @(AKAN-TRANS stop)
+                | @(AKAN-INTRANS stop)
+                | (^ PRED) = 'stop<(^ SUBJ)(^ XCOMP)>' }  "control verb reading"
+                { @INDICATIVE | @IMPERATIVE }.
+
+su    Vstem * { @(AKAN-TRANS cry)
+                | @(AKAN-INTRANS cry)}
+                { @INDICATIVE | @IMPERATIVE }.
+
+"Postpositions"
+
+ase    Postp * @(LOC-P under).
+
+mu     Postp * @(LOC-P inside).
+
+so     Postp * @(LOC-P on).
+
+akyi   Postp * @(LOC-P behind).
+
+anim   Postp * @(LOC-P front).
+
+nkyɛn  Postp * @(LOC-P beside).
+
+
+"Punctuation"
+
+.   PERIOD * .
+
+!   EXCLAMATION * .
+----
